@@ -143,10 +143,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* STYLOVÁNÍ SEKCE O MNĚ */
-        .polozka-o-mne { margin-bottom: 30px; }
-        .polozka-o-mne h3 { margin: 0 0 5px 0; color: var(--tmavsi-zelena); font-size: 1.25rem; }
-
         /* TIMELINE PRO ZKUŠENOSTI */
         .experience-timeline {
             position: relative;
@@ -218,6 +214,71 @@
             font-weight: bold;
         }
 
+        /* --- NOVÝ STYL PRO SEKCI O MNĚ (KARTY) --- */
+        .grid-o-mne {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .karta {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .karta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+            border-color: #cbd5e1;
+        }
+
+        .karta h3 {
+            margin: 0 0 15px 0;
+            color: var(--barva-hero);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+
+        .ikona {
+            font-size: 1.6rem;
+            background: white;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .karta p {
+            margin: 0 0 10px 0;
+            font-size: 0.95rem;
+        }
+        
+        .karta p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Speciální karta pro motivaci (Roztažená na celou šířku s barevným podkladem) */
+        .karta-highlight {
+            grid-column: 1 / -1; /* Zabere celou šířku mřížky */
+            background: linear-gradient(135deg, #f4faeb 0%, #eef8df 100%);
+            border-color: #d9f99d;
+        }
+        
+        .karta-highlight h3 {
+            border-bottom-color: #bef264;
+            color: var(--tmavsi-zelena);
+        }
+
         /* RESPONZIVITA */
         @media (max-width: 768px) {
             .hero-container {
@@ -236,6 +297,9 @@
             }
             .tab-content {
                 padding: 30px 20px;
+            }
+            .grid-o-mne {
+                grid-template-columns: 1fr; /* Na mobilu pod sebou */
             }
         }
     </style>
@@ -303,35 +367,45 @@
         <div id="o-mne" class="tab-content">
             <h2>Něco málo o mně</h2>
             
-            <div class="polozka-o-mne">
-                <h3>Osobní život</h3>
-                <p>Je mi 34 let, jsem manžel a hrdý táta skoro tříleté dcerky. Abych se přiznal, naplno si užívám všechny prolézačky a hřiště, které s ní můžu o víkendech objevovat. Mojí nedílnou součástí je ale i aktivní společenský život. Velmi rád se setkávám s přáteli a organizace větších skupin, ať už jde o společné víkendové výlety nebo rovnou dovolené, je mi velmi vlastní.</p>
-            </div>
+            <div class="grid-o-mne">
+                
+                <div class="karta">
+                    <h3><span class="ikona">👨‍👩‍👧</span> Osobní život</h3>
+                    <p>Je mi 34 let, jsem manžel a hrdý táta skoro tříleté dcerky. Abych se přiznal, naplno si užívám všechny prolézačky a hřiště, které s ní můžu o víkendech objevovat.</p>
+                    <p>Mojí nedílnou součástí je ale i aktivní společenský život. Velmi rád se setkávám s přáteli a organizace větších skupin, ať už jde o společné víkendové výlety nebo rovnou dovolené, je mi velmi vlastní.</p>
+                </div>
 
-            <div class="polozka-o-mne">
-                <h3>Zájmy a aktivní odpočinek</h3>
-                <p>Když potřebuji dobít baterky a vyčistit si hlavu, jdu si zahrát badminton nebo squash. Mám rád i trochu adrenalinu. Rád jezdím na motorce, v posledních letech jsem projel například velkou část Rumunska a celou Sardínii. A také se aktivně věnuji jachtingu, letos plánuji poprvé vyrazit i na rodinnou plavbu s malými dětmi do Chorvatska. Udržuje mě to v tempu a učí rychle reagovat na nové situace.</p>
-            </div>
+                <div class="karta">
+                    <h3><span class="ikona">🏸</span> Zájmy a odpočinek</h3>
+                    <p>Když potřebuji dobít baterky a vyčistit si hlavu, jdu si zahrát badminton nebo squash. Mám rád i trochu adrenalinu. Rád jezdím na motorce, v posledních letech jsem projel například velkou část Rumunska a celou Sardínii.</p>
+                    <p>A také se aktivně věnuji jachtingu, letos plánuji poprvé vyrazit i na rodinnou plavbu s malými dětmi do Chorvatska. Udržuje mě to v tempu a učí rychle reagovat na nové situace.</p>
+                </div>
 
-            <div class="polozka-o-mne">
-                <h3>Vzdělávání a seberozvoj</h3>
-                <p>Mám maturitu na obchodní akademii v Brně a bez problémů se domluvím anglicky. Seberozvoj je obrovskou součástí mého života a neustále sleduji trendy v oboru, abych nestál na místě. Své znalosti si mimo jiné každoročně potvrzuji obnovováním 5 certifikací na Google Ads (Search, Display, Video, Shopping, Data). Rád také sáhnu po dobré knize o marketingu, naposledy mě například velmi oslovila Alchymie.<br><br>Pravidelně se účastním marketingových konferencí – loni jsem se například vypravil na prestižní AdWorld Experience v italské Boloni, u nás v Česku pak pravidelně jezdím na akce jako PPC Restart nebo Mergado Fest. Naše firma navíc organizuje PPC Camp a PPC Barbeque, kde tu a tam rád přiložím ruku k dílu a pomůžu s organizací.</p>
-            </div>
+                <div class="karta">
+                    <h3><span class="ikona">📚</span> Seberozvoj</h3>
+                    <p>Mám maturitu na obchodní akademii v Brně a bez problémů se domluvím anglicky. Své znalosti si každoročně potvrzuji obnovováním 5 certifikací na Google Ads (Search, Display, Video, Shopping, Data). Rád také sáhnu po dobré knize o marketingu.</p>
+                    <p>Pravidelně jezdím na konference – loni to byla např. AdWorld Experience v italské Boloni, u nás pak PPC Restart nebo Mergado Fest. Naše firma navíc organizuje PPC Camp a PPC Barbeque, kde rád přiložím ruku k dílu.</p>
+                </div>
 
-            <div class="polozka-o-mne">
-                <h3>AI a moderní technologie</h3>
-                <p>Fascinuje mě, kam se svět technologií posouvá. S umělou inteligencí si ale jen nečetuju, aktivně ji využívám nejen k nastavování různých automatizací. Vytvořil jsem například systém pro automatické stahování novinek ze světa PPC, internetu i sociálních sítí a jejich pravidelné zasílání všem kolegům na firemní e-mail. Mají tak nejčerstvější oborové novinky naservírované zcela bez práce.<br><br>Pamatuju také doby, kdy nás při automatizaci procesů v Excelu limitovaly jen naše znalosti nekonečné databáze vzorců. To už dnes díky AI odpadá – jsem díky ní schopen stavět velké databáze, ve kterých se modelují různé metriky a které následně fungují jako jeden spolehlivý zdroj pravdy (propojení více zdrojů do jednoho). Díky tomu jsme s klienty schopni rychleji odhalit insighty, které by nám jinam zůstaly skryté v průměrovaných datech.<br><br>Není to ale jen o datech. Důležité jsou v dnešním světě i kreativy a tady se AI posunula v posledních měsících mílovými kroky. Jsem schopný vygenerovat a upravit klientům takové bannery, které se nebojí sdílet na svých sociálních sítích.</p>
-            </div>
+                <div class="karta">
+                    <h3><span class="ikona">🤖</span> AI a technologie</h3>
+                    <p>Fascinuje mě, kam se svět technologií posouvá. S AI si nejen četuju, aktivně ji využívám k automatizacím. Vytvořil jsem například systém pro automatické stahování novinek a jejich zasílání kolegům.</p>
+                    <p>Jsem díky AI schopen stavět velké databáze, které fungují jako spolehlivý zdroj pravdy. Není to ale jen o datech – generuji a upravuji klientům bannery, které se nebojí sdílet na sociálních sítích.</p>
+                </div>
 
-            <div class="polozka-o-mne">
-                <h3>Z pohledu zákazníka</h3>
-                <p>Co považuji za svou velkou výhodu? Vaše prostředí znám velmi dobře přímo z pohledu zákazníka. Vím, co klienti ocení, co reálně funguje a kde mohou být případná slabá místa. Rád bych tyto zkušenosti přetavil do výsledků z druhé strany barikády.</p>
-            </div>
+                <div class="karta">
+                    <h3><span class="ikona">🎯</span> Z pohledu zákazníka</h3>
+                    <p>Co považuji za svou velkou výhodu? Vaše prostředí znám velmi dobře přímo z pohledu zákazníka. Vím, co klienti ocení, co reálně funguje a kde mohou být případná slabá místa. Rád bych tyto zkušenosti přetavil do výsledků z druhé strany barikády.</p>
+                </div>
 
-            <div class="polozka-o-mne">
-                <h3>Proč právě já?</h3>
-                <p>Delší dobu už mě láká možnost posunu do in-house týmu a ovlivňování byznysu od A do Z. V agentuře získávám široké zkušenosti, ale postrádám hlubší dopad na firmu. A když jsem viděl vaši nabídku, říkal jsem si: „WOW! Vždyť já veškerý svůj volný čas teď trávím na hřištích. A teď bych se jim mohl věnovat i v práci!” Jsem přesvědčen, že moje motivace, zkušenosti a dovednosti jsou pro pozici marketingového specialisty ideální. Pokud jsem vás zaujal, velmi rád se s vámi setkám osobně.</p>
-            </div> </div>
+                <div class="karta karta-highlight">
+                    <h3><span class="ikona">🤝</span> Proč právě já?</h3>
+                    <p>Delší dobu už mě láká možnost posunu do in-house týmu a ovlivňování byznysu od A do Z. V agentuře získávám široké zkušenosti, ale postrádám hlubší dopad na firmu. A když jsem viděl vaši nabídku, říkal jsem si: <strong>„WOW! Vždyť já veškerý svůj volný čas teď trávím na hřištích. A teď bych se jim mohl věnovat i v práci!”</strong></p>
+                    <p>Jsem přesvědčen, že moje motivace, zkušenosti a dovednosti jsou pro pozici marketingového specialisty ideální. Pokud jsem vás zaujal, velmi rád se s vámi setkám osobně.</p>
+                </div>
+
+            </div>
+        </div>
 
     </main>
 

@@ -7,10 +7,10 @@
     <style>
         /* ZÁKLADNÍ NASTAVENÍ A BARVY (Vysoký kontrast + jaro) */
         :root {
-            --barva-pozadi: #f8fafc; /* Čistá světlá pro spodní část */
-            --barva-hero: #0f172a; /* Velmi tmavá pro Hero sekci */
-            --ziva-zelena: #84cc16; /* Svěží jarní zelená */
-            --tmavsi-zelena: #4d7c0f; /* Pro hover efekty */
+            --barva-pozadi: #f8fafc;
+            --barva-hero: #0f172a;
+            --ziva-zelena: #84cc16;
+            --tmavsi-zelena: #4d7c0f;
             --text-hlavni: #334155; 
             --text-svetly: #ffffff;
         }
@@ -24,7 +24,7 @@
             line-height: 1.6;
         }
 
-        /* HERO SEKCE (Upraveno na text vlevo, fotka vpravo) */
+        /* HERO SEKCE */
         .hero {
             background-color: var(--barva-hero);
             color: var(--text-svetly);
@@ -35,14 +35,14 @@
             max-width: 900px;
             margin: 0 auto;
             display: flex;
-            align-items: center;      /* Zarovná text a fotku vertikálně na střed */
-            justify-content: space-between; /* Dá text a fotku na opačné strany */
-            gap: 40px;                /* Mezera mezi textem a fotkou */
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
         }
 
         .hero-text {
-            flex: 1; /* Říká textové části, ať zabere dostupný prostor */
-            text-align: left; /* Zarovnání textu doleva */
+            flex: 1;
+            text-align: left;
         }
 
         .hero-text h1 {
@@ -52,7 +52,6 @@
             line-height: 1.1;
         }
 
-        /* Jméno podtržené zeleně pro šmrnc */
         .hero-text h1 span {
             color: var(--ziva-zelena);
         }
@@ -61,7 +60,7 @@
             font-size: 1.25rem;
             color: #94a3b8;
             margin: 0;
-            max-width: 700px;
+            max-width: 100%; /* Upraveno pro širší text podle minulé debaty */
         }
 
         .profilovka {
@@ -71,13 +70,14 @@
             object-fit: cover;
             border: 4px solid var(--ziva-zelena);
             box-shadow: 0 10px 25px rgba(132, 204, 22, 0.2);
-            flex-shrink: 0; /* Zabrání zmenšování fotky, když je text dlouhý */
+            flex-shrink: 0;
         }
 
         /* ZÁLOŽKY (Tlačítka) */
         .tabs-container {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap; /* Přidáno, aby se tlačítka zalamovala, pokud se nevejdou na displej */
             gap: 15px;
             padding: 30px 20px;
             background-color: white;
@@ -146,10 +146,9 @@
         .polozka h3 { margin: 0 0 5px 0; color: var(--tmavsi-zelena); }
         .polozka .meta { font-size: 0.9rem; color: #64748b; margin-bottom: 10px; font-weight: 500; }
 
-        /* Responzivita: Na mobilu chceme dát text a fotku zase pod sebe */
         @media (max-width: 768px) {
             .hero-container {
-                flex-direction: column-reverse; /* Důležité: na mobilu dá fotku nad text */
+                flex-direction: column-reverse;
                 text-align: center;
                 gap: 20px;
             }
@@ -160,7 +159,6 @@
                 font-size: 2.5rem;
             }
             .tabs-container { 
-                flex-direction: column; 
                 padding: 20px; 
             }
         }
@@ -172,8 +170,7 @@
         <div class="hero-container">
             <div class="hero-text">
                 <h1>Ahoj, já jsem <br><span>Richard Herzog</span></h1>
-                <p>Jsem manžel a táta skoro tříleté holčičky a miluju všechny prolízačky, které můžeme prolízat na hřištích společně. Řekl bych, že znám vaše prostředí z pohledu zákazníka velmi dobře. Je mi 34 let. Hraju badminton a squash. Rád jezdím na motorce a občasně zkouším jachting. Mám maturitu na obchodce v Brně a domluvím se anglicky. Velkou částí mého života je seberozvoj. Pravidelně účastním marketingových konferencí a sleduji trendy v oboru. Loni jsem se vypravil na AdWorld Experience v italské Boloni.
-</p>
+                <p>Jsem manžel a táta skoro tříleté holčičky a miluju všechny prolízačky, které můžeme prolízat na hřištích společně. Řekl bych, že znám vaše prostředí z pohledu zákazníka velmi dobře. Je mi 34 let. Hraju badminton a squash. Rád jezdím na motorce a občasně zkouším jachting. Mám maturitu na obchodce v Brně a domluvím se anglicky. Velkou částí mého života je seberozvoj. Pravidelně účastním marketingových konferencí a sleduji trendy v oboru. Loni jsem se vypravil na AdWorld Experience v italské Boloni.</p>
             </div>
             
             <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=300&q=80" alt="Richard" class="profilovka">
@@ -184,7 +181,7 @@
         <button class="tab-btn active" onclick="otevriZalozku('aktualni', this)">Aktuální práce</button>
         <button class="tab-btn" onclick="otevriZalozku('zkusenosti', this)">Předchozí zkušenosti</button>
         <button class="tab-btn" onclick="otevriZalozku('motivace', this)">Moje motivace</button>
-        
+        <button class="tab-btn" onclick="otevriZalozku('o-mne', this)">O mně</button>
     </nav>
 
     <main class="content-area">
@@ -218,7 +215,7 @@
             <p>Pokud hledáte do týmu někoho, kdo nečeká na úkoly, ale sám je aktivně vyhledává, jsem váš člověk.</p>
         </div>
 
-         <div id="o mně" class="tab-content">
+        <div id="o-mne" class="tab-content">
             <h2>Něco málo o mně</h2>
             <p>Věřím, že práce by měla mít smysl a reálný dopad. Neustále se vzdělávám, aktuálně mě baví propojování umělé inteligence a denní operativy.</p>
             <p>Pokud hledáte do týmu někoho, kdo nečeká na úkoly, ale sám je aktivně vyhledává, jsem váš člověk.</p>

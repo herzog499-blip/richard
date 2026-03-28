@@ -24,39 +24,54 @@
             line-height: 1.6;
         }
 
-        /* HERO SEKCE (Jen ty a ty) */
+        /* HERO SEKCE (Upraveno na text vlevo, fotka vpravo) */
         .hero {
             background-color: var(--barva-hero);
             color: var(--text-svetly);
-            text-align: center;
             padding: 80px 20px 60px;
+        }
+
+        .hero-container {
+            max-width: 900px;
+            margin: 0 auto;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            align-items: center;      /* Zarovná text a fotku vertikálně na střed */
+            justify-content: space-between; /* Dá text a fotku na opačné strany */
+            gap: 40px;                /* Mezera mezi textem a fotkou */
+        }
+
+        .hero-text {
+            flex: 1; /* Říká textové části, ať zabere dostupný prostor */
+            text-align: left; /* Zarovnání textu doleva */
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin: 0 0 15px 0;
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+
+        /* Jméno podtržené zeleně pro šmrnc */
+        .hero-text h1 span {
+            color: var(--ziva-zelena);
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            margin: 0;
+            max-width: 500px;
         }
 
         .profilovka {
-            width: 180px;
-            height: 180px;
+            width: 220px;
+            height: 220px;
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid var(--ziva-zelena);
-            margin-bottom: 20px;
             box-shadow: 0 10px 25px rgba(132, 204, 22, 0.2);
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin: 0 0 10px 0;
-            letter-spacing: -1px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: #94a3b8;
-            max-width: 600px;
-            margin: 0 auto;
+            flex-shrink: 0; /* Zabrání zmenšování fotky, když je text dlouhý */
         }
 
         /* ZÁLOŽKY (Tlačítka) */
@@ -88,7 +103,6 @@
             background-color: #e2e8f0;
         }
 
-        /* Aktivní tlačítko */
         .tab-btn.active {
             background-color: var(--ziva-zelena);
             color: var(--barva-hero);
@@ -103,15 +117,14 @@
         }
 
         .tab-content {
-            display: none; /* Skryje všechny záložky v základu */
+            display: none;
             background: white;
             padding: 40px;
             border-radius: 16px;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-            animation: fadeIn 0.4s ease-out; /* Plynulé zobrazení */
+            animation: fadeIn 0.4s ease-out;
         }
 
-        /* Zobrazí jen tu aktivní */
         .tab-content.active {
             display: block;
         }
@@ -124,29 +137,46 @@
             margin-bottom: 25px;
         }
 
-        /* Animace pro prolnutí */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Drobnosti pro texty */
         .polozka { margin-bottom: 30px; }
         .polozka h3 { margin: 0 0 5px 0; color: var(--tmavsi-zelena); }
         .polozka .meta { font-size: 0.9rem; color: #64748b; margin-bottom: 10px; font-weight: 500; }
 
-        @media (max-width: 600px) {
-            .tabs-container { flex-direction: column; padding: 20px; }
-            .hero h1 { font-size: 2.2rem; }
+        /* Responzivita: Na mobilu chceme dát text a fotku zase pod sebe */
+        @media (max-width: 768px) {
+            .hero-container {
+                flex-direction: column-reverse; /* Důležité: na mobilu dá fotku nad text */
+                text-align: center;
+                gap: 20px;
+            }
+            .hero-text {
+                text-align: center;
+            }
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            .tabs-container { 
+                flex-direction: column; 
+                padding: 20px; 
+            }
         }
     </style>
 </head>
 <body>
 
     <header class="hero">
-        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=300&q=80" alt="Richard" class="profilovka">
-        <h1>Richard</h1>
-        <p>Projektový manažer. Kreativec. Člověk, co dotahuje věci do konce.</p>
+        <div class="hero-container">
+            <div class="hero-text">
+                <h1>Ahoj, já jsem <span>Richard</span></h1>
+                <p>Projektový manažer. Kreativec. Člověk, co dotahuje věci do konce a hledá inovativní řešení.</p>
+            </div>
+            
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=300&q=80" alt="Richard" class="profilovka">
+        </div>
     </header>
 
     <nav class="tabs-container">
@@ -190,19 +220,16 @@
 
     <script>
         function otevriZalozku(idZalozky, tlacitko) {
-            // 1. Skryjeme všechny obsahy záložek
             let obsahy = document.getElementsByClassName("tab-content");
             for (let i = 0; i < obsahy.length; i++) {
                 obsahy[i].classList.remove("active");
             }
 
-            // 2. Odebereme barvu všem tlačítkům
             let tlacitka = document.getElementsByClassName("tab-btn");
             for (let i = 0; i < tlacitka.length; i++) {
                 tlacitka[i].classList.remove("active");
             }
 
-            // 3. Zobrazíme kliknutou záložku a obarvíme její tlačítko
             document.getElementById(idZalozky).classList.add("active");
             tlacitko.classList.add("active");
         }

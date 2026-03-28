@@ -3,237 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Richard | Portfolio & Životopis</title>
+    <title>Richard | Osobní Web</title>
     <style>
-        /* MODERNÍ KONTRASTNÍ BARVY */
+        /* ZÁKLADNÍ NASTAVENÍ A BARVY (Vysoký kontrast + jaro) */
         :root {
-            --tmava-pozadi: #0f172a; /* Velmi tmavá břidlicová (skvělý kontrast) */
-            --svetla-pozadi: #ffffff; /* Čistá bílá pro hlavní obsah */
-            --ziva-zelena: #a3e635; /* Zářivá jarní zelená pro akcenty */
-            --tmavsi-zelena: #4d7c0f; /* Tmavší zelená pro texty na bílé */
-            --text-hlavni: #334155; /* Příjemná tmavě šedá pro čtení */
-            --text-svetly: #f8fafc; /* Světlý text pro tmavý panel */
-            --cara: #e2e8f0; /* Jemná šedá pro oddělovače */
-        }
-
-        html {
-            scroll-behavior: smooth;
+            --barva-pozadi: #f8fafc; /* Čistá světlá pro spodní část */
+            --barva-hero: #0f172a; /* Velmi tmavá pro Hero sekci */
+            --ziva-zelena: #84cc16; /* Svěží jarní zelená */
+            --tmavsi-zelena: #4d7c0f; /* Pro hover efekty */
+            --text-hlavni: #334155; 
+            --text-svetly: #ffffff;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: var(--barva-pozadi);
             color: var(--text-hlavni);
-            background-color: var(--svetla-pozadi);
-            line-height: 1.7;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            line-height: 1.6;
         }
 
-        /* LEVÝ PANEL (Fixní na počítači) */
-        header {
-            background-color: var(--tmava-pozadi);
+        /* HERO SEKCE (Jen ty a ty) */
+        .hero {
+            background-color: var(--barva-hero);
             color: var(--text-svetly);
-            padding: 40px 30px;
+            text-align: center;
+            padding: 80px 20px 60px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: center;
+            justify-content: center;
         }
 
         .profilovka {
-            width: 150px;
-            height: 150px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid var(--ziva-zelena);
             margin-bottom: 20px;
+            box-shadow: 0 10px 25px rgba(132, 204, 22, 0.2);
         }
 
-        header h1 {
+        .hero h1 {
+            font-size: 3rem;
             margin: 0 0 10px 0;
-            font-size: 2rem;
-            color: var(--svetla-pozadi);
+            letter-spacing: -1px;
         }
 
-        header p.podtitul {
+        .hero p {
+            font-size: 1.2rem;
             color: #94a3b8;
-            font-size: 1.1rem;
-            margin: 0 0 30px 0;
-            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        /* NAVIGACE V LEVÉM PANELU */
-        nav {
+        /* ZÁLOŽKY (Tlačítka) */
+        .tabs-container {
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             gap: 15px;
-            width: 100%;
+            padding: 30px 20px;
+            background-color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        nav a {
-            color: var(--text-svetly);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 12px 20px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            text-align: left;
-            border-left: 4px solid transparent;
-        }
-
-        nav a:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-left: 4px solid var(--ziva-zelena);
-            color: var(--ziva-zelena);
-        }
-
-        /* PRAVÁ ČÁST (Hlavní obsah) */
-        main {
-            padding: 40px 20px;
-            flex: 1;
-        }
-
-        section {
-            max-width: 700px;
-            margin: 0 auto 60px auto;
-        }
-
-        section h2 {
-            font-size: 1.8rem;
-            color: var(--tmavsi-zelena);
-            border-bottom: 2px solid var(--cara);
-            padding-bottom: 15px;
-            margin-bottom: 30px;
-            position: relative;
-        }
-
-        section h2::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -2px;
-            width: 60px;
-            height: 2px;
-            background-color: var(--ziva-zelena);
-        }
-
-        /* STYLOVÁNÍ PRACOVNÍCH POZIC */
-        .polozka-cv {
-            margin-bottom: 30px;
-        }
-
-        .polozka-cv h3 {
-            margin: 0 0 5px 0;
-            font-size: 1.3rem;
-            color: #0f172a;
-        }
-
-        .datum-firma {
-            font-size: 0.95rem;
-            color: #64748b;
-            margin-bottom: 15px;
-            font-weight: 500;
-        }
-
-        .tagy {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 15px;
-        }
-
-        .tag {
+        .tab-btn {
             background-color: #f1f5f9;
-            color: var(--tmavsi-zelena);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
+            color: var(--text-hlavni);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 1rem;
             font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        /* ROZLOŽENÍ PRO VĚTŠÍ OBRAZOVKY (PC a tablety) */
-        @media (min-width: 768px) {
-            body {
-                flex-direction: row;
-            }
+        .tab-btn:hover {
+            background-color: #e2e8f0;
+        }
 
-            header {
-                width: 280px;
-                height: 100vh;
-                position: fixed;
-                left: 0;
-                top: 0;
-                overflow-y: auto;
-            }
+        /* Aktivní tlačítko */
+        .tab-btn.active {
+            background-color: var(--ziva-zelena);
+            color: var(--barva-hero);
+            box-shadow: 0 4px 10px rgba(132, 204, 22, 0.3);
+        }
 
-            main {
-                margin-left: 280px;
-                padding: 60px 80px;
-            }
+        /* OBSAH ZÁLOŽEK */
+        .content-area {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .tab-content {
+            display: none; /* Skryje všechny záložky v základu */
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            animation: fadeIn 0.4s ease-out; /* Plynulé zobrazení */
+        }
+
+        /* Zobrazí jen tu aktivní */
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-content h2 {
+            color: var(--barva-hero);
+            margin-top: 0;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        /* Animace pro prolnutí */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Drobnosti pro texty */
+        .polozka { margin-bottom: 30px; }
+        .polozka h3 { margin: 0 0 5px 0; color: var(--tmavsi-zelena); }
+        .polozka .meta { font-size: 0.9rem; color: #64748b; margin-bottom: 10px; font-weight: 500; }
+
+        @media (max-width: 600px) {
+            .tabs-container { flex-direction: column; padding: 20px; }
+            .hero h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
 
-    <header>
+    <header class="hero">
         <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=300&q=80" alt="Richard" class="profilovka">
         <h1>Richard</h1>
-        <p class="podtitul">Projektový manažer & Kreativec</p>
-        
-        <nav>
-            <a href="#o-mne">O mně</a>
-            <a href="#aktualni">Aktuální práce</a>
-            <a href="#zkusenosti">Předchozí zkušenosti</a>
-            <a href="#motivace">Moje motivace</a>
-        </nav>
+        <p>Projektový manažer. Kreativec. Člověk, co dotahuje věci do konce.</p>
     </header>
 
-    <main>
-        <section id="o-mne">
-            <h2>O mně</h2>
-            <p>Vítejte v mém portfoliu. Jsem člověk, který rád posouvá věci dopředu. Mám rád čistý design, efektivní procesy a hledání cest, jak dělat věci lépe. Aktuálně se věnuji projektovému řízení a objevování nových technologií.</p>
-        </section>
+    <nav class="tabs-container">
+        <button class="tab-btn active" onclick="otevriZalozku('aktualni', this)">Aktuální práce</button>
+        <button class="tab-btn" onclick="otevriZalozku('zkusenosti', this)">Předchozí zkušenosti</button>
+        <button class="tab-btn" onclick="otevriZalozku('motivace', this)">Moje motivace</button>
+    </nav>
 
-        <section id="aktualni">
+    <main class="content-area">
+        
+        <div id="aktualni" class="tab-content active">
             <h2>Aktuální práce</h2>
-            
-            <div class="polozka-cv">
+            <div class="polozka">
                 <h3>Název tvé současné pozice</h3>
-                <div class="datum-firma">2023 – Současnost | Název Firmy s.r.o.</div>
-                <p>Zde detailněji popiš, co máš na starosti. Například: Vedení klíčových projektů, komunikace napříč odděleními a zavádění nových postupů. Podařilo se mi zkrátit dobu dodání projektů o 20 %.</p>
-                
-                <div class="tagy">
-                    <span class="tag">Vedení projektů</span>
-                    <span class="tag">Komunikace</span>
-                    <span class="tag">Agile</span>
-                </div>
+                <div class="meta">Název Firmy s.r.o. | 2023 – Současnost</div>
+                <p>Tady rozepiš, co přesně teď děláš. Vedení klíčových projektů, komunikace napříč odděleními a zavádění nových postupů. Podařilo se mi zkrátit dobu dodání projektů o 20 %.</p>
             </div>
-        </section>
+        </div>
 
-        <section id="zkusenosti">
+        <div id="zkusenosti" class="tab-content">
             <h2>Předchozí zkušenosti</h2>
-            
-            <div class="polozka-cv">
+            <div class="polozka">
                 <h3>Předchozí pozice</h3>
-                <div class="datum-firma">2020 – 2023 | Bývalá Firma a.s.</div>
+                <div class="meta">Bývalá Firma a.s. | 2020 – 2023</div>
                 <p>Na této pozici jsem se naučil pracovat pod tlakem a dotahovat věci do konce. Měl jsem na starosti portfolio menších klientů a kompletní péči o ně.</p>
             </div>
-
-            <div class="polozka-cv">
+            <div class="polozka">
                 <h3>Junior pozice</h3>
-                <div class="datum-firma">2018 – 2020 | Moje První Firma</div>
+                <div class="meta">Moje První Firma | 2018 – 2020</div>
                 <p>Zde jsem sbíral první zkušenosti s oborem. Skvělá škola, která mi dala pevné základy.</p>
             </div>
-        </section>
+        </div>
 
-        <section id="motivace">
+        <div id="motivace" class="tab-content">
             <h2>Moje motivace</h2>
-            <p>Věřím, že práce by měla mít smysl a reálný dopad. Neustále se vzdělávám, aktuálně mě baví propojování umělé inteligence a denní operativy. Pokud hledáte do týmu někoho, kdo nečeká na úkoly, ale sám je aktivně vyhledává, jsem váš člověk.</p>
-        </section>
+            <p>Věřím, že práce by měla mít smysl a reálný dopad. Neustále se vzdělávám, aktuálně mě baví propojování umělé inteligence a denní operativy.</p>
+            <p>Pokud hledáte do týmu někoho, kdo nečeká na úkoly, ale sám je aktivně vyhledává, jsem váš člověk.</p>
+        </div>
+
     </main>
 
+    <script>
+        function otevriZalozku(idZalozky, tlacitko) {
+            // 1. Skryjeme všechny obsahy záložek
+            let obsahy = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < obsahy.length; i++) {
+                obsahy[i].classList.remove("active");
+            }
+
+            // 2. Odebereme barvu všem tlačítkům
+            let tlacitka = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tlacitka.length; i++) {
+                tlacitka[i].classList.remove("active");
+            }
+
+            // 3. Zobrazíme kliknutou záložku a obarvíme její tlačítko
+            document.getElementById(idZalozky).classList.add("active");
+            tlacitko.classList.add("active");
+        }
+    </script>
 </body>
 </html>

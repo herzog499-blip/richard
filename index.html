@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Richard | Osobní Web</title>
+    <title>Richard Herzog | Osobní Web</title>
     <style>
-        /* ZÁKLADNÍ NASTAVENÍ A BARVY (Vysoký kontrast + jaro) */
+        /* ZÁKLADNÍ NASTAVENÍ A BARVY */
         :root {
             --barva-pozadi: #f8fafc;
             --barva-hero: #0f172a;
@@ -13,6 +13,7 @@
             --tmavsi-zelena: #4d7c0f;
             --text-hlavni: #334155; 
             --text-svetly: #ffffff;
+            --cara-timeline: #e2e8f0;
         }
 
         body {
@@ -60,7 +61,7 @@
             font-size: 1.25rem;
             color: #94a3b8;
             margin: 0;
-            max-width: 100%; /* Upraveno pro širší text podle minulé debaty */
+            max-width: 100%;
         }
 
         .profilovka {
@@ -77,7 +78,7 @@
         .tabs-container {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap; /* Přidáno, aby se tlačítka zalamovala, pokud se nevejdou na displej */
+            flex-wrap: wrap;
             gap: 15px;
             padding: 30px 20px;
             background-color: white;
@@ -142,10 +143,82 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .polozka { margin-bottom: 30px; }
-        .polozka h3 { margin: 0 0 5px 0; color: var(--tmavsi-zelena); }
-        .polozka .meta { font-size: 0.9rem; color: #64748b; margin-bottom: 10px; font-weight: 500; }
+        /* STYLOVÁNÍ SEKCE O MNĚ */
+        .polozka-o-mne { margin-bottom: 30px; }
+        .polozka-o-mne h3 { margin: 0 0 5px 0; color: var(--tmavsi-zelena); font-size: 1.25rem; }
 
+        /* TIMELINE PRO ZKUŠENOSTI */
+        .experience-timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-top: 10px;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 2px;
+            height: 100%;
+            background-color: var(--cara-timeline);
+            border-radius: 2px;
+        }
+
+        .polozka-cv {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .polozka-cv::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--ziva-zelena);
+            border: 3px solid white;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 0 2px var(--cara-timeline);
+        }
+
+        .polozka-cv h3 {
+            margin: 0 0 5px 0;
+            color: var(--barva-hero);
+            font-size: 1.35rem;
+        }
+
+        .polozka-cv .meta {
+            font-size: 0.95rem;
+            color: #64748b;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .polozka-cv ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 15px;
+        }
+
+        .polozka-cv ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            color: var(--text-hlavni);
+        }
+
+        .polozka-cv ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--ziva-zelena);
+            font-weight: bold;
+        }
+
+        /* RESPONZIVITA */
         @media (max-width: 768px) {
             .hero-container {
                 flex-direction: column-reverse;
@@ -161,6 +234,9 @@
             .tabs-container { 
                 padding: 20px; 
             }
+            .tab-content {
+                padding: 30px 20px;
+            }
         }
     </style>
 </head>
@@ -173,7 +249,7 @@
                 <p>Marketingový a projektový manažer. Postarám se o celé oddělení, mám zkušenosti s vedením specialistů, komunikaci s agenturami i nastavováním strategie.</p>
             </div>
             
-            <img src="richard.png" alt="Richard" class="profilovka">
+            <img src="richard.png" alt="Richard Herzog" class="profilovka">
         </div>
     </header>
 
@@ -188,24 +264,33 @@
         
         <div id="aktualni" class="tab-content active">
             <h2>Aktuální práce</h2>
-            <div class="polozka">
-                <h3>Název tvé současné pozice</h3>
-                <div class="meta">Název Firmy s.r.o. | 2023 – Současnost</div>
-                <p>Tady rozepiš, co přesně teď děláš. Vedení klíčových projektů, komunikace napříč odděleními a zavádění nových postupů. Podařilo se mi zkrátit dobu dodání projektů o 20 %.</p>
+            <div class="experience-timeline">
+                <div class="polozka-cv">
+                    <h3>Název tvé současné pozice</h3>
+                    <div class="meta">Název Firmy s.r.o. | 2023 – Současnost</div>
+                    <p>Tady rozepiš, co přesně teď děláš. Vedení klíčových projektů, komunikace napříč odděleními a zavádění nových postupů. Podařilo se mi zkrátit dobu dodání projektů o 20 %.</p>
+                </div>
             </div>
         </div>
 
         <div id="zkusenosti" class="tab-content">
             <h2>Předchozí zkušenosti</h2>
-            <div class="polozka">
-                <h3>Předchozí pozice</h3>
-                <div class="meta">Bývalá Firma a.s. | 2020 – 2023</div>
-                <p>Na této pozici jsem se naučil pracovat pod tlakem a dotahovat věci do konce. Měl jsem na starosti portfolio menších klientů a kompletní péči o ně.</p>
-            </div>
-            <div class="polozka">
-                <h3>Junior pozice</h3>
-                <div class="meta">Moje První Firma | 2018 – 2020</div>
-                <p>Zde jsem sbíral první zkušenosti s oborem. Skvělá škola, která mi dala pevné základy.</p>
+            <div class="experience-timeline">
+                <div class="polozka-cv">
+                    <h3>Předchozí pozice</h3>
+                    <div class="meta">Bývalá Firma a.s. | 2020 – 2023</div>
+                    <p>Na této pozici jsem se naučil pracovat pod tlakem a dotahovat věci do konce. Měl jsem na starosti portfolio menších klientů a kompletní péči o ně. Moje klíčové úspěchy:</p>
+                    <ul>
+                        <li>Vedení klíčových projektů od zadání po spuštění.</li>
+                        <li>Optimalizace procesu komunikace s klienty.</li>
+                        <li>Zvýšení spokojenosti zákazníků o 15 %.</li>
+                    </ul>
+                </div>
+                <div class="polozka-cv">
+                    <h3>Junior pozice</h3>
+                    <div class="meta">Moje První Firma | 2018 – 2020</div>
+                    <p>Zde jsem sbíral první zkušenosti s oborem. Skvělá škola, která mi dala pevné základy.</p>
+                </div>
             </div>
         </div>
 
@@ -218,35 +303,35 @@
         <div id="o-mne" class="tab-content">
             <h2>Něco málo o mně</h2>
             
-            <div class="polozka">
+            <div class="polozka-o-mne">
                 <h3>Osobní život</h3>
                 <p>Je mi 34 let, jsem manžel a hrdý táta skoro tříleté dcerky. Abych se přiznal, naplno si užívám všechny prolézačky a hřiště, které s ní můžu o víkendech objevovat. Mojí nedílnou součástí je ale i aktivní společenský život. Velmi rád se setkávám s přáteli a organizace větších skupin, ať už jde o společné víkendové výlety nebo rovnou dovolené, je mi velmi vlastní.</p>
             </div>
 
-            <div class="polozka">
+            <div class="polozka-o-mne">
                 <h3>Zájmy a aktivní odpočinek</h3>
                 <p>Když potřebuji dobít baterky a vyčistit si hlavu, jdu si zahrát badminton nebo squash. Mám rád i trochu adrenalinu. Rád jezdím na motorce, v posledních letech jsem projel například velkou část Rumunska a celou Sardínii. A také se aktivně věnuji jachtingu, letos plánuji poprvé vyrazit i na rodinnou plavbu s malými dětmi do Chorvatska. Udržuje mě to v tempu a učí rychle reagovat na nové situace.</p>
             </div>
 
-            <div class="polozka">
+            <div class="polozka-o-mne">
                 <h3>Vzdělávání a seberozvoj</h3>
                 <p>Mám maturitu na obchodní akademii v Brně a bez problémů se domluvím anglicky. Seberozvoj je obrovskou součástí mého života a neustále sleduji trendy v oboru, abych nestál na místě. Své znalosti si mimo jiné každoročně potvrzuji obnovováním 5 certifikací na Google Ads (Search, Display, Video, Shopping, Data). Rád také sáhnu po dobré knize o marketingu, naposledy mě například velmi oslovila Alchymie.<br><br>Pravidelně se účastním marketingových konferencí – loni jsem se například vypravil na prestižní AdWorld Experience v italské Boloni, u nás v Česku pak pravidelně jezdím na akce jako PPC Restart nebo Mergado Fest. Naše firma navíc organizuje PPC Camp a PPC Barbeque, kde tu a tam rád přiložím ruku k dílu a pomůžu s organizací.</p>
             </div>
 
-            <div class="polozka">
+            <div class="polozka-o-mne">
                 <h3>AI a moderní technologie</h3>
                 <p>Fascinuje mě, kam se svět technologií posouvá. S umělou inteligencí si ale jen nečetuju, aktivně ji využívám nejen k nastavování různých automatizací. Vytvořil jsem například systém pro automatické stahování novinek ze světa PPC, internetu i sociálních sítí a jejich pravidelné zasílání všem kolegům na firemní e-mail. Mají tak nejčerstvější oborové novinky naservírované zcela bez práce.<br><br>Pamatuju také doby, kdy nás při automatizaci procesů v Excelu limitovaly jen naše znalosti nekonečné databáze vzorců. To už dnes díky AI odpadá – jsem díky ní schopen stavět velké databáze, ve kterých se modelují různé metriky a které následně fungují jako jeden spolehlivý zdroj pravdy (propojení více zdrojů do jednoho). Díky tomu jsme s klienty schopni rychleji odhalit insighty, které by nám jinam zůstaly skryté v průměrovaných datech.<br><br>Není to ale jen o datech. Důležité jsou v dnešním světě i kreativy a tady se AI posunula v posledních měsících mílovými kroky. Jsem schopný vygenerovat a upravit klientům takové bannery, které se nebojí sdílet na svých sociálních sítích.</p>
             </div>
 
-            <div class="polozka">
+            <div class="polozka-o-mne">
                 <h3>Z pohledu zákazníka</h3>
                 <p>Co považuji za svou velkou výhodu? Vaše prostředí znám velmi dobře přímo z pohledu zákazníka. Vím, co klienti ocení, co reálně funguje a kde mohou být případná slabá místa. Rád bych tyto zkušenosti přetavil do výsledků z druhé strany barikády.</p>
             </div>
 
-            <div class="polozka">
+            <div class="polozka-o-mne">
                 <h3>Proč právě já?</h3>
                 <p>Delší dobu už mě láká možnost posunu do in-house týmu a ovlivňování byznysu od A do Z. V agentuře získávám široké zkušenosti, ale postrádám hlubší dopad na firmu. A když jsem viděl vaši nabídku, říkal jsem si: „WOW! Vždyť já veškerý svůj volný čas teď trávím na hřištích. A teď bych se jim mohl věnovat i v práci!” Jsem přesvědčen, že moje motivace, zkušenosti a dovednosti jsou pro pozici marketingového specialisty ideální. Pokud jsem vás zaujal, velmi rád se s vámi setkám osobně.</p>
-        </div>
+            </div> </div>
 
     </main>
 

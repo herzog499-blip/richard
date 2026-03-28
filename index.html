@@ -130,13 +130,38 @@
             display: block;
         }
 
-        .tab-content h2 {
-            color: var(--barva-hero);
-            margin-top: 0;
-            border-bottom: 2px solid #f1f5f9;
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-        }
+/* 1. UPRAVENÝ PŮVODNÍ STYL: Odstraníme border a margin, aby nelítaly */
+.tab-content h2 {
+    color: var(--barva-hero);
+    margin: 0 !important; /* Důležité: zrušíme marginy */
+    border-bottom: none !important; /* Zrušíme border na samotném H2 */
+    padding-bottom: 0 !important;
+}
+
+/* 2. NOVÝ STYL PRO OBAL: Tohle dá text a logo vedle sebe */
+.h2-s-logem-wrapper {
+    display: flex;
+    align-items: center;    /* Vertikálně zarovná střed textu a loga */
+    justify-content: flex-start; /* Začne zleva */
+    gap: 20px;              /* Mezera mezi textem a logem */
+    
+    /* Přesuneme sem původní styl okraje a odsazení od H2 */
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+
+/* 3. NOVÝ STYL PRO SAMOTNÉ LOGO */
+.logo-v-hlavicce {
+    width: 50px;            /* Pevná velikost loga */
+    height: 50px;
+    border-radius: 50%;     /* Kulaté logo */
+    object-fit: contain;    /* Logo se v kroužku nedeformuje */
+    background: white;      /* Bílý podklad, pokud má logo průhlednost */
+    border: 3px solid white; /* Bílý kroužek */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* Jemný stín */
+    flex-shrink: 0;         /* Zabrání zmenšení loga, když je text dlouhý */
+}
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -323,8 +348,13 @@
     <main class="content-area">
         
         <div id="aktualni" class="tab-content active">
-            <h2>Aktuální práce | Unicorns Lab s.r.o. | od roku 2020</h2>
-            <div class="experience-timeline">
+    
+    <div class="h2-s-logem-wrapper">
+        <h2>Aktuální práce | Unicorns Lab s.r.o. | od roku 2020</h2>
+        <img src="ulablogo.png" alt="Logo Unicorns Lab" class="logo-v-hlavicce">
+    </div>
+
+    <div class="experience-timeline">
                 <div class="polozka-cv">
                     <h3>Performance & Reporting specialist</h3>
                     <div class="meta">2026 – současnost</div>
@@ -393,7 +423,8 @@
 
                 <div class="karta">
                     <h3><span class="ikona">📚</span> Seberozvoj</h3>
-                    <p>Mám maturitu na obchodní akademii v Brně a bez problémů se <strong>domluvím anglicky</strong>. Seberozvoj je obrovskou součástí mého života a neustále sleduji trendy v oboru, abych nestál na místě. Své znalosti si mimo jiné každoročně potvrzuji obnovováním <strong>5 certifikací na Google Ads</strong> (Search, Display, Video, Shopping, Data). Pravidelně se <strong>účastním marketingových konferencí</strong> – loni jsem se například vypravil s týmem na prestižní AdWorld Experience v italské Boloni, u nás v Česku pak pravidelně jezdím na akce jako PPC Restart nebo Mergado Fest. Naše firma navíc organizuje <strong>PPC Camp a PPC Barbeque</strong>, kde tu a tam rád přiložím ruku k dílu a pomůžu s organizací.</p>
+                    <p>Mám maturitu na obchodní akademii v Brně a bez problémů se <strong>domluvím anglicky</strong>. Seberozvoj je obrovskou součástí mého života a neustále sleduji trendy v oboru, abych nestál na místě. Své znalosti si mimo jiné každoročně potvrzuji obnovováním <strong>5 certifikací na Google Ads</strong> (Search, Display, Video, Shopping, Data). Rád také sáhnu po dobré <strong>knize o marketingu</strong>, naposledy mě například velmi oslovila Alchymie od Rory Sutherland.</p>
+                    <p>Pravidelně se <strong>účastním marketingových konferencí</strong> – loni jsem se například vypravil s týmem na prestižní AdWorld Experience v italské Boloni, u nás v Česku pak pravidelně jezdím na akce jako PPC Restart nebo Mergado Fest. Naše firma navíc organizuje <strong>PPC Camp a PPC Barbeque</strong>, kde tu a tam rád přiložím ruku k dílu a pomůžu s organizací.</p>
                 </div>
 
                 <div class="karta">

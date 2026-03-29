@@ -153,14 +153,10 @@
 
 /* 3. NOVÝ STYL PRO SAMOTNÉ LOGO */
 .logo-v-hlavicce {
-    width: 50px;            /* Pevná velikost loga */
-    height: 50px;
-    border-radius: 50%;     /* Kulaté logo */
-    object-fit: contain;    /* Logo se v kroužku nedeformuje */
-    background: white;      /* Bílý podklad, pokud má logo průhlednost */
-    border: 3px solid white; /* Bílý kroužek */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* Jemný stín */
-    flex-shrink: 0;         /* Zabrání zmenšení loga, když je text dlouhý */
+    height: 40px;         /* Výška úměrná velikosti nadpisu H2 */
+    width: auto;          /* Šířka se dopočítá automaticky, aby se logo nenatáhlo */
+    object-fit: contain;  /* Zabrání zdeformování obrázku */
+    flex-shrink: 0;       /* Zabrání zmenšení loga, když je text moc dlouhý */
 }
 
         @keyframes fadeIn {

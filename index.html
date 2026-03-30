@@ -399,17 +399,18 @@
             100% { transform: translateX(0); }
         }
 
-        .slider-logo {
-            height: 35px; /* Výška log - můžeš si upravit podle potřeby */
+.slider-logo {
+            height: 35px;
             width: auto;
-            opacity: 0.5; /* Loga budou lehce průhledná, aby nervala pozornost */
-            /* PRO TIP: Tohle udělá všechna loga čistě bílá, aby na tmavém pozadí vypadala luxusně a sjednoceně */
-            filter: grayscale(100%) brightness(500%); 
-            transition: opacity 0.3s ease;
+            opacity: 0.6; /* Lehce jsem to zesílil z 0.5 na 0.6, ať jsou lépe vidět i v klidu */
+            /* TOTO JE TA NOVÁ MAGIE: */
+            filter: brightness(0) invert(1); 
+            transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
         .slider-logo:hover {
-            opacity: 1; /* Po najetí myší se logo rozsvítí */
+            opacity: 1; /* Úplně se rozsvítí */
+            transform: scale(1.05); /* Třešnička na dortu: po najetí myší se logo i jemně zvětší */
         }
 
 /* RESPONZIVITA */

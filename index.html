@@ -372,6 +372,46 @@
             margin-top: 2px;
         }
 
+        /* --- JEZDÍCÍ PÁS S LOGY (KOLOTOČ) --- */
+        .logo-slider {
+            width: 100%;
+            max-width: 900px;
+            margin: 50px auto 0; /* Odsazení shora od tvého textu a fotky */
+            overflow: hidden;
+            position: relative;
+            /* Tohle je ta magie, co udělá okraje do ztracena */
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+
+        .logo-slide-track {
+            display: flex;
+            align-items: center;
+            gap: 50px; /* Mezera mezi logy */
+            width: max-content;
+            /* Animace: 25 sekund, plynule, nekonečně zleva doprava */
+            animation: scroll-left-to-right 25s linear infinite;
+        }
+
+        /* Aby pás jel plynule donekonečna, posouváme ho z -50% na 0 */
+        @keyframes scroll-left-to-right {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        .slider-logo {
+            height: 35px; /* Výška log - můžeš si upravit podle potřeby */
+            width: auto;
+            opacity: 0.5; /* Loga budou lehce průhledná, aby nervala pozornost */
+            /* PRO TIP: Tohle udělá všechna loga čistě bílá, aby na tmavém pozadí vypadala luxusně a sjednoceně */
+            filter: grayscale(100%) brightness(500%); 
+            transition: opacity 0.3s ease;
+        }
+
+        .slider-logo:hover {
+            opacity: 1; /* Po najetí myší se logo rozsvítí */
+        }
+
 /* RESPONZIVITA */
         @media (max-width: 768px) {
             .hero-container {
@@ -410,8 +450,23 @@
                 <h1>Ahoj, já jsem <br><span>Richard Herzog</span></h1>
                 <p>Marketingový a projektový manažer. Postarám se o celé oddělení, mám zkušenosti s vedením specialistů, komunikaci s agenturami i nastavováním strategie.</p>
             </div>
-            
             <img src="richard.png" alt="Richard Herzog" class="profilovka">
+        </div>
+
+        <div class="logo-slider">
+            <div class="logo-slide-track">
+                <img src="https://via.placeholder.com/120x40.png?text=Firma+1" class="slider-logo" alt="Klient 1">
+                <img src="https://via.placeholder.com/120x40.png?text=Firma+2" class="slider-logo" alt="Klient 2">
+                <img src="https://via.placeholder.com/120x40.png?text=Firma+3" class="slider-logo" alt="Klient 3">
+                <img src="https://via.placeholder.com/120x40.png?text=Firma+4" class="slider-logo" alt="Klient 4">
+                <img src="https://via.placeholder.com/120x40.png?text=Firma+5" class="slider-logo" alt="Klient 5">
+                
+                <img src="https://via.placeholder.com/120x40.png?text=Firma+1" class="slider-logo" alt="Klient 1">
+                <img src="https://via.placeholder.com/120x40.png?text=Firma+2" class="slider-logo" alt="Klient 2">
+                <img src="https://via.placeholder.com/120x40.png?text=Firma+3" class="slider-logo" alt="Klient 3">
+                <img src="https://via.placeholder.com/120x40.png?text=Firma+4" class="slider-logo" alt="Klient 4">
+                <img src="https://via.placeholder.com/120x40.png?text=Firma+5" class="slider-logo" alt="Klient 5">
+            </div>
         </div>
     </header>
 

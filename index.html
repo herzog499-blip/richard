@@ -470,6 +470,56 @@
             transform: scale(1.05); /* Třešnička na dortu: po najetí myší se logo i jemně zvětší */
         }
 
+                    /* ROZBALOVACÍ DETAILY (TOGGLE) */
+        .skryte-detaily {
+            margin-top: 20px;
+        }
+
+        .skryte-detaily summary {
+            font-weight: 600;
+            color: var(--tmavsi-zelena);
+            cursor: pointer;
+            list-style: none; /* Skryje výchozí ošklivou šipku prohlížeče */
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 18px;
+            background-color: #f4faeb;
+            border-radius: 8px;
+            transition: background-color 0.2s ease;
+            font-size: 1.05rem;
+            user-select: none;
+        }
+
+        /* Pro jistotu skrytí šipky v Safari */
+        .skryte-detaily summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .skryte-detaily summary:hover {
+            background-color: #eef8df;
+        }
+
+        .sipka-toggle {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        /* Když je to otevřené, otoč šipku vzhůru nohama */
+        .skryte-detaily[open] summary .sipka-toggle {
+            transform: rotate(180deg);
+        }
+
+        .detaily-obsah {
+            padding-top: 25px;
+            animation: fadeInDown 0.3s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
 /* RESPONZIVITA */
         @media (max-width: 768px) {
             .hero-container {
@@ -527,56 +577,6 @@
             .karta-doporuceni {
                 padding: 20px; /* Trochu zmenšíme vnitřní okraje, ať text na mobilu dýchá */
             }
-
-            /* ROZBALOVACÍ DETAILY (TOGGLE) */
-        .skryte-detaily {
-            margin-top: 20px;
-        }
-
-        .skryte-detaily summary {
-            font-weight: 600;
-            color: var(--tmavsi-zelena);
-            cursor: pointer;
-            list-style: none; /* Skryje výchozí ošklivou šipku prohlížeče */
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 18px;
-            background-color: #f4faeb;
-            border-radius: 8px;
-            transition: background-color 0.2s ease;
-            font-size: 1.05rem;
-            user-select: none;
-        }
-
-        /* Pro jistotu skrytí šipky v Safari */
-        .skryte-detaily summary::-webkit-details-marker {
-            display: none;
-        }
-
-        .skryte-detaily summary:hover {
-            background-color: #eef8df;
-        }
-
-        .sipka-toggle {
-            font-size: 0.8rem;
-            transition: transform 0.3s ease;
-        }
-
-        /* Když je to otevřené, otoč šipku vzhůru nohama */
-        .skryte-detaily[open] summary .sipka-toggle {
-            transform: rotate(180deg);
-        }
-
-        .detaily-obsah {
-            padding-top: 25px;
-            animation: fadeInDown 0.3s ease-out;
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
         }
     </style>
 </head>

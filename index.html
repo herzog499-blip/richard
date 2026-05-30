@@ -520,6 +520,66 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* --- STYL PRO NÁSTROJE A SYSTÉMY (TECH STACK) --- */
+        .sekce-nastroju {
+            margin-bottom: 40px;
+        }
+
+        .sekce-nastroju h3 {
+            color: var(--tmavsi-zelena);
+            font-size: 1.25rem;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .grid-nastroje {
+            display: grid;
+            /* Automaticky poskládá kartičky vedle sebe podle šířky displeje */
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 15px;
+        }
+
+        .nastroj-karta {
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 15px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.2s ease;
+            height: 100px;
+        }
+
+        .nastroj-karta:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 15px -3px rgba(0,0,0,0.08);
+            border-color: var(--ziva-zelena);
+        }
+
+        .nastroj-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            margin-bottom: 12px;
+            /* Dočasné šedé pozadí, než si tam nahraješ svá loga */
+            background-color: #f8fafc; 
+            border-radius: 8px;
+        }
+
+        .nastroj-nazev {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-hlavni);
+            line-height: 1.2;
+        }
+
 /* RESPONZIVITA */
         @media (max-width: 768px) {
             .hero-container {
@@ -664,10 +724,11 @@
         </div>
     </header>
 
-    <nav class="tabs-container">
+<nav class="tabs-container">
         <button class="tab-btn active" onclick="otevriZalozku('aktualni', this)">Aktuální práce</button>
         <button class="tab-btn" onclick="otevriZalozku('zkusenosti', this)">Předchozí zkušenosti</button>
         <button class="tab-btn" onclick="otevriZalozku('motivace', this)">Moje motivace</button>
+        <button class="tab-btn" onclick="otevriZalozku('nastroje', this)">Tech Stack & Nástroje</button>
         <button class="tab-btn" onclick="otevriZalozku('doporuceni', this)">Doporučení</button>
         <button class="tab-btn" onclick="otevriZalozku('o-mne', this)">O mně</button>
     </nav>
@@ -695,16 +756,24 @@
                         <div class="detaily-obsah">
                             <div class="grid-o-mne">
                                 <div class="karta">
+                                    <h3><span class="ikona">🔗</span> Propojování e-commerce systémů</h3>
+                                    <p>Řeším komplexní integrace napříč platformami. Propojuji data z různých zdrojů (např. e-shopové řešení Shoptet, tržiště přes BaseLinker) a přes automatizované feedy je vizualizuji v Looker Studiu. Klientům tak vytvářím sjednocené dashboardy, kde mohou v reálném čase sledovat korelace objednávek a celkový výkon napříč všemi prodejními kanály.</p>
+                                </div>
+                                <div class="karta">
+                                    <h3><span class="ikona">🎨</span> Kreativa a AI automatizace</h3>
+                                    <p>Marketing nevnímám jen přes tabulky, ale i přes vizuál. Když bylo potřeba zrychlit produkci kreativ, vytvořil jsem detailní brand manuál pro AI nástroje. Zvládám tak samostatně generovat grafické podklady a finálně je upravovat v Canvě, díky čemuž dokážeme bleskově reagovat na potřeby rychlého online prostředí bez čekání na externí grafiky.</p>
+                                </div>
+                                <div class="karta">
+                                    <h3><span class="ikona">🎯</span> Tvorba a škálování kreativních konceptů</h3>
+                                    <p>V době algoritmických sociálních sítí nestačí jeden statický formát. Pro klienty aktivně navrhuji rozmanité komunikační úhly pro jeden produkt – od unboxing videí a lifestylových fotek, přes recenze, zdůraznění benefitů, až po User-Generated Content (UGC). Tento multiformátový přístup nám umožňuje efektivně zasáhnout cílovou skupinu v celé její šíři a napříč nákupním trychtýřem.</p>
+                                </div>
+                                <div class="karta">
                                     <h3><span class="ikona">📊</span> Analýza trhu a hledanosti</h3>
                                     <p>Měsíčně stahujeme a ukládáme data o hledanosti z Googlu. Předdefinuji celý trh (kategorie, konkurence, marketplaces). Díky tomu vidíme, <strong>zda rosteme spolu s trhem, nebo ztrácíme podíl</strong>, a máme v rukou tvrdá data pro další strategii.</p>
                                 </div>
                                 <div class="karta">
                                     <h3><span class="ikona">💡</span> Strategické přesahy</h3>
                                     <p>Díky velkým datovým přehledům se mi daří nacházet klíčové příležitosti. U jednoho klienta jsme např. odhalili <strong>hromadný přesun zákazníků na marketplaces</strong>, což vedlo k okamžitému testování zalistování jeho produktů přímo tam.</p>
-                                </div>
-                                <div class="karta">
-                                    <h3><span class="ikona">🔗</span> Komplexní integrace</h3>
-                                    <p>Nejde jen o základní metriky. Do ucelených dashboardů umím dostat i výsledky dotazníků nasazených na webu nebo <strong>data o zdraví produktového feedu</strong>, čímž získáváme absolutní kontrolu nad celým nákupním procesem.</p>
                                 </div>
                             </div>
                         </div>
@@ -875,6 +944,79 @@
             <div class="karta" style="border-color: #cbd5e1; background-color: white;">
                 <p style="font-size: 1.1rem; margin-bottom: 20px; color: var(--text-hlavni);">Spojit svou profesní odbornost s něčím, co mi dává osobní smysl a reálně mě to baví, je pro mě ten největší hnací motor. Jsem přesvědčen, že kombinace mé motivace, letitých zkušeností v marketingu a perfektní znalosti vaší cílové skupiny ze mě dělá ideálního kandidáta na pozici marketingového specialisty.</p> 
                 <p style="margin: 0;"><strong style="color: var(--barva-hero); font-size: 1.15rem;">Pokud jsem vás zaujal, velmi rád s vámi proberu své nápady i osobně. ☕</strong></p>
+            </div>
+
+        </div>
+
+        <div id="nastroje" class="tab-content">
+            
+            <div style="margin-bottom: 40px;">
+                <h2 style="font-size: 1.8rem; margin-bottom: 5px !important;">Můj Tech Stack <span style="font-size: 1.5rem;">⚙️</span></h2>
+                <p style="color: #64748b; font-size: 1.05rem; margin: 0; border-bottom: 2px solid #f1f5f9; padding-bottom: 15px;">Seznam systémů, nástrojů a platforem, se kterými denně pracuji nebo je dobře ovládám.</p>
+            </div>
+
+            <div class="sekce-nastroju">
+                <h3><span>🎯</span> PPC & Výkonnostní marketing</h3>
+                <div class="grid-nastroje">
+                    <div class="nastroj-karta"><img src="" alt="Google Ads" class="nastroj-logo"><span class="nastroj-nazev">Google Ads</span></div>
+                    <div class="nastroj-karta"><img src="" alt="Meta Ads" class="nastroj-logo"><span class="nastroj-nazev">Meta Ads</span></div>
+                    <div class="nastroj-karta"><img src="" alt="Sklik" class="nastroj-logo"><span class="nastroj-nazev">Sklik</span></div>
+                    <div class="nastroj-karta"><img src="" alt="TikTok Ads" class="nastroj-logo"><span class="nastroj-nazev">TikTok Ads</span></div>
+                    <div class="nastroj-karta"><img src="" alt="LinkedIn Ads" class="nastroj-logo"><span class="nastroj-nazev">LinkedIn Ads</span></div>
+                    <div class="nastroj-karta"><img src="" alt="Bing Ads" class="nastroj-logo"><span class="nastroj-nazev">Bing Ads</span></div>
+                    <div class="nastroj-karta"><img src="" alt="Dotidot" class="nastroj-logo"><span class="nastroj-nazev">Dotidot</span></div>
+                    <div class="nastroj-karta"><img src="" alt="Mergado" class="nastroj-logo"><span class="nastroj-nazev">Mergado</span></div>
+                </div>
+            </div>
+
+            <div class="sekce-nastroju">
+                <h3><span>📊</span> Analytika, Data & Cloud</h3>
+                <div class="grid-nastroje">
+                    <div class="nastroj-karta"><img src="" alt="Google Analytics" class="nastroj-logo"><span class="nastroj-nazev">GA4</span></div>
+                    <div class="nastroj-karta"><img src="" alt="Tag Manager" class="nastroj-logo"><span class="nastroj-nazev">Tag Manager</span></div>
+                    <div class="nastroj-karta"><img src="" alt="Looker Studio" class="nastroj-logo"><span class="nastroj-nazev">Datastudio</span></div>
+                    <div class="nastroj-karta"><img src="" alt="Big Query" class="nastroj-logo"><span class="nastroj-nazev">Big Query</span></div>
+                    <div class="nastroj-karta"><img src="" alt="Google Cloud" class="nastroj-logo"><span class="nastroj-nazev">Google Cloud</span></div>
+                    <div class="nastroj-karta"><img src="" alt="Search Console" class="nastroj-logo"><span class="nastroj-nazev">Search Console</span></div>
+                    <div class="nastroj-karta"><img src="" alt="Clarity" class="nastroj-logo"><span class="nastroj-nazev">MS Clarity</span></div>
+                    <div class="nastroj-karta"><img src="" alt="Marketing Miner" class="nastroj-logo"><span class="nastroj-nazev">Marketing Miner</span></div>
+                    <div class="nastroj-karta"><img src="" alt="Open Refine" class="nastroj-logo"><span class="nastroj-nazev">Open Refine</span></div>
+                </div>
+            </div>
+
+            <div class="sekce-nastroju">
+                <h3><span>🛒</span> E-commerce platformy & CRO</h3>
+                <div class="grid-nastroje">
+                    <div class="nastroj-karta"><img src="" alt="Shoptet" class="nastroj-logo"><span class="nastroj-nazev">Shoptet</span></div>
+                    <div class="nastroj-karta"><img src="" alt="Shopify" class="nastroj-logo"><span class="nastroj-nazev">Shopify</span></div>
+                    <div class="nastroj-karta"><img src="" alt="WooCommerce" class="nastroj-logo"><span class="nastroj-nazev">WooCommerce</span></div>
+                    <div class="nastroj-karta"><img src="" alt="Merchant Center" class="nastroj-logo"><span class="nastroj-nazev">Merchant Center</span></div>
+                    <div class="nastroj-karta"><img src="" alt="Optimonk" class="nastroj-logo"><span class="nastroj-nazev">Optimonk</span></div>
+                    <div class="nastroj-karta"><img src="" alt="PageSpeed Insights" class="nastroj-logo"><span class="nastroj-nazev">PageSpeed</span></div>
+                </div>
+            </div>
+
+            <div class="sekce-nastroju">
+                <h3><span>🤖</span> AI & Automatizace</h3>
+                <div class="grid-nastroje">
+                    <div class="nastroj-karta"><img src="" alt="ChatGPT" class="nastroj-logo"><span class="nastroj-nazev">ChatGPT</span></div>
+                    <div class="nastroj-karta"><img src="" alt="Gemini" class="nastroj-logo"><span class="nastroj-nazev">Gemini</span></div>
+                    <div class="nastroj-karta"><img src="" alt="Claude Code" class="nastroj-logo"><span class="nastroj-nazev">Claude Code</span></div>
+                    <div class="nastroj-karta"><img src="" alt="N8N" class="nastroj-logo"><span class="nastroj-nazev">N8N</span></div>
+                </div>
+            </div>
+
+            <div class="sekce-nastroju">
+                <h3><span>📋</span> Projektové řízení & Kreativa</h3>
+                <div class="grid-nastroje">
+                    <div class="nastroj-karta"><img src="" alt="Canva" class="nastroj-logo"><span class="nastroj-nazev">Canva</span></div>
+                    <div class="nastroj-karta"><img src="" alt="Miro" class="nastroj-logo"><span class="nastroj-nazev">Miro</span></div>
+                    <div class="nastroj-karta"><img src="" alt="Notion" class="nastroj-logo"><span class="nastroj-nazev">Notion</span></div>
+                    <div class="nastroj-karta"><img src="" alt="Asana" class="nastroj-logo"><span class="nastroj-nazev">Asana</span></div>
+                    <div class="nastroj-karta"><img src="" alt="Freelo" class="nastroj-logo"><span class="nastroj-nazev">Freelo</span></div>
+                    <div class="nastroj-karta"><img src="" alt="Trello" class="nastroj-logo"><span class="nastroj-nazev">Trello</span></div>
+                    <div class="nastroj-karta"><img src="" alt="Atria" class="nastroj-logo"><span class="nastroj-nazev">Atria</span></div>
+                </div>
             </div>
 
         </div>

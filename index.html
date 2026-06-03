@@ -1150,13 +1150,21 @@
                 tlacitka[i].classList.remove("active");
             }
 
-            document.getElementById(idZalozky).classList.add("active");
+            // 1. Aktivujeme nový obsah a tlačítko
+            let aktivniObsah = document.getElementById(idZalozky);
+            aktivniObsah.classList.add("active");
             tlacitko.classList.add("active");
 
-            // OPRAVA: Prohlížeč si najde fyzickou polohu menu a plynule na ni odroluje
+            // 2. Najdeme sticky menu a zjistíme jeho aktuální výšku v pixelech
             let menu = document.querySelector('.tabs-container');
+            let vyskaMenu = menu.offsetHeight;
+
+            // 3. Spočítáme absolutní pozici začátku nového obsahu vůči úplnému vršku stránky
+            let poziceObsahu = aktivniObsah.getBoundingClientRect().top + window.scrollY;
+
+            // 4. Odrolujeme na začátek obsahu minus výška menu (a minus 20px rezerva, ať to má čistý padding)
             window.scrollTo({
-                top: menu.offsetTop,
+                top: poziceObsahu - vyskaMenu - 20,
                 behavior: 'smooth'
             });
         }

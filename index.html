@@ -1153,8 +1153,12 @@
             document.getElementById(idZalozky).classList.add("active");
             tlacitko.classList.add("active");
 
-            // TENTO ŘÁDEK ZAJIŠŤUJE AUTOMATICKÉ ODSKROLOVÁNÍ K TEXTU ZÁLOŽKY
-            document.querySelector('.tabs-container').scrollIntoView({ behavior: 'smooth' });
+            // OPRAVA: Prohlížeč si najde fyzickou polohu menu a plynule na ni odroluje
+            let menu = document.querySelector('.tabs-container');
+            window.scrollTo({
+                top: menu.offsetTop,
+                behavior: 'smooth'
+            });
         }
     </script>
 </body>

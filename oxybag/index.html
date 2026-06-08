@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Richard Herzog | Osobní Web</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='0' y='60' font-family='Georgia, serif' font-size='70' fill='black'>R</text><text x='40' y='95' font-family='Georgia, serif' font-size='70' fill='black'>H</text></svg>">
+    <style>
+        /* ZÁKLADNÍ NASTAVENÍ A BARVY */
+        :root {
+            --barva-pozadi: #f8fafc;
+            --barva-hero: #0f172a;
+            --ziva-zelena: #84cc16;
+            --tmavsi-zelena: #4d7c0f;
+            --text-hlavni: #334155; 
+            --text-svetly: #ffffff;
+            --cara-timeline: #e2e8f0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--barva-pozadi);
+            color: var(--text-hlavni);
+            line-height: 1.6;
+        }
+
+        /* HERO SEKCE */
+        .hero {
+            background-color: var(--barva-hero);
+            color: var(--text-svetly);
+            padding: 80px 20px 60px;
+        }
+
+        .hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin: 0 0 15px 0;
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+
+        .hero-text h1 span {
+            color: var(--ziva-zelena);
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            margin: 0;
+            max-width: 100%;
+        }
+
+        .profilovka {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--ziva-zelena);
+            box-shadow: 0 10px 25px rgba(132, 204, 22, 0.2);
+            flex-shrink: 0;
+        }
+
+        /* KONTAKTNÍ BOXY V HLAVIČCE */
+        .kontakt-boxy {
+            display: flex;
+            flex-direction: row; 
+            gap: 12px;
+            flex-shrink: 0;
+            z-index: 10;
+        }
+
+        .kontakt-tlacitko {
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            background-color: rgba(255, 255, 255, 0.05); 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 14px; 
+            border-radius: 12px;
+            color: var(--text-svetly);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .kontakt-tlacitko:hover {
+            background-color: rgba(132, 204, 22, 0.1); 
+            border-color: var(--ziva-zelena);
+            color: var(--ziva-zelena);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(132, 204, 22, 0.15);
+        }
+
+        .kontakt-tlacitko svg {
+            color: var(--ziva-zelena);
+            flex-shrink: 0;
+        }
+
+        /* ZAROVNÁNÍ NADPISU A IKON */
+        .hlavicka-nadpis-flex {
+            display: flex;
+            align-items: flex-end; 
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .hlavicka-nadpis-flex h1 {
+            margin-bottom: 0; 
+        }
+
+        .kontakt-boxy {
+            display: flex;
+            flex-direction: row;
+            gap: 12px;
+            margin-bottom: 8px; 
+        }
+
+        /* ZÁLOŽKY (Tlačítka) */
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 30px 20px;
+            background-color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .tab-btn {
+            background-color: #f1f5f9;
+            color: var(--text-hlavni);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            background-color: #e2e8f0;
+        }
+
+        .tab-btn.active {
+            background-color: var(--ziva-zelena);
+            color: var(--barva-hero);
+            box-shadow: 0 4px 10px rgba(132, 204, 22, 0.3);
+        }
+
+        /* OBSAH ZÁLOŽEK */
+        .content-area {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-content h2 {
+            color: var(--barva-hero);
+            margin: 0 !important; 
+            border-bottom: none !important; 
+            padding-bottom: 0 !important;
+        }
+
+        .h2-s-logem-wrapper {
+            display: flex;
+            align-items: center;    
+            justify-content: flex-start; 
+            gap: 20px;              
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .logo-v-hlavicce {
+            height: 60px;         
+            width: auto;          
+            object-fit: contain;  
+            flex-shrink: 0;       
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* TIMELINE PRO ZKUŠENOSTI */
+        .experience-timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-top: 10px;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 2px;
+            height: 100%;
+            background-color: var(--cara-timeline);
+            border-radius: 2px;
+        }
+
+        .polozka-cv {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .polozka-cv::before {
+            content: '';
+            position: absolute;
+            left: -37px; 
+            top: 24px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--ziva-zelena);
+            border: 3px solid white;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 0 2px var(--cara-timeline);
+        }
+
+        .polozka-cv h3 {
+            margin: 0 0 5px 0;
+            color: var(--barva-hero);
+            font-size: 1.35rem;
+        }
+
+        .polozka-cv .meta {
+            font-size: 0.95rem;
+            color: #64748b;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .polozka-cv ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 15px;
+        }
+
+        .polozka-cv ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            color: var(--text-hlavni);
+        }
+
+        .polozka-cv ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--ziva-zelena);
+            font-weight: bold;
+        }
+
+        /* --- STYL PRO SEKCI O MNĚ (KARTY POD SEBOU) --- */
+        .grid-o-mne {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .karta {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .karta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+            border-color: #cbd5e1;
+        }
+
+        .karta h3 {
+            margin: 0 0 15px 0;
+            color: var(--barva-hero);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+
+        .ikona {
+            font-size: 1.6rem;
+            background: white;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .karta p {
+            margin: 0 0 10px 0;
+            font-size: 0.95rem;
+        }
+        
+        .karta p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Speciální karta pro motivaci */
+        .karta-highlight {
+            background: linear-gradient(135deg, #f4faeb 0%, #eef8df 100%);
+            border-color: #d9f99d;
+        }
+        
+        .karta-highlight h3 {
+            border-bottom-color: #bef264;
+            color: var(--tmavsi-zelena);
+        }
+
+        /* --- STYL PRO DOPORUČENÍ (TESTIMONIALS) --- */
+        .grid-doporuceni {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .karta-doporuceni {
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .doporuceni-text {
+            font-style: italic;
+            color: var(--text-hlavni);
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .doporuceni-text::before {
+            content: '"';
+            font-size: 4rem;
+            color: #f1f5f9;
+            position: absolute;
+            top: -20px;
+            left: -15px;
+            z-index: 0;
+            font-family: serif;
+        }
+        
+        .doporuceni-text p {
+            position: relative;
+            z-index: 1;
+            margin: 0;
+        }
+
+        .doporuceni-autor {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 15px;
+        }
+
+        .autor-foto {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #e2e8f0;
+        }
+
+        .autor-info strong {
+            display: block;
+            color: var(--barva-hero);
+            font-size: 1.05rem;
+        }
+
+        .autor-info span {
+            display: block;
+            font-size: 0.85rem;
+            color: #64748b;
+            line-height: 1.3;
+            margin-top: 2px;
+        }
+
+        /* --- JEZDÍCÍ PÁS S LOGY (KOLOTOČ) --- */
+        .logo-slider {
+            width: 100%;
+            max-width: 900px;
+            margin: 50px auto 0; 
+            overflow: hidden;
+            position: relative;
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+
+        .logo-slide-track {
+            display: flex;
+            align-items: center;
+            gap: 50px; 
+            width: max-content;
+            animation: scroll-left-to-right 25s linear infinite;
+        }
+
+        @keyframes scroll-left-to-right {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        .slider-logo {
+            height: 35px;
+            width: auto;
+            opacity: 0.6; 
+            filter: brightness(0) invert(1); 
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .slider-logo:hover {
+            opacity: 1; 
+            transform: scale(1.05); 
+        }
+
+        /* ROZBALOVACÍ DETAILY (TOGGLE) */
+        .skryte-detaily {
+            margin-top: 20px;
+        }
+
+        .skryte-detaily summary {
+            font-weight: 600;
+            color: var(--tmavsi-zelena);
+            cursor: pointer;
+            list-style: none; 
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 18px;
+            background-color: #f4faeb;
+            border-radius: 8px;
+            transition: background-color 0.2s ease;
+            font-size: 1.05rem;
+            user-select: none;
+        }
+
+        .skryte-detaily summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .skryte-detaily summary:hover {
+            background-color: #eef8df;
+        }
+
+        .sipka-toggle {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .skryte-detaily[open] summary .sipka-toggle {
+            transform: rotate(180deg);
+        }
+
+        .detaily-obsah {
+            padding-top: 25px;
+            animation: fadeInDown 0.3s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- STYL PRO NÁSTROJE A SYSTÉMY (TECH STACK) --- */
+        .sekce-nastroju {
+            margin-bottom: 40px;
+        }
+
+        .sekce-nastroju h3 {
+            color: var(--tmavsi-zelena);
+            font-size: 1.25rem;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .grid-nastroje {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 15px;
+        }
+
+        .nastroj-karta {
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 15px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.2s ease;
+            height: 100px;
+        }
+
+        .nastroj-karta:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 15px -3px rgba(0,0,0,0.08);
+            border-color: var(--ziva-zelena);
+        }
+
+        .nastroj-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            margin-bottom: 12px;
+            background-color: #f8fafc; 
+            border-radius: 8px;
+        }
+
+        .nastroj-nazev {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-hlavni);
+            line-height: 1.2;
+        }
+
+        /* RESPONZIVITA */
+        @media (max-width: 768px) {
+            .hero-container {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 20px;
+            }
+            .hero-text {
+                text-align: center;
+            }
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+           .tabs-container { 
+                padding: 15px 10px; 
+                flex-wrap: nowrap; 
+                overflow-x: auto; 
+                justify-content: flex-start; 
+                -webkit-overflow-scrolling: touch; 
+                scrollbar-width: none; 
+            }
+            
+            .tabs-container::-webkit-scrollbar {
+                display: none;
+            }
+
+            .tab-btn {
+                white-space: nowrap; 
+                flex-shrink: 0; 
+                padding: 10px 16px; 
+                font-size: 0.95rem;
+            }
+            .tab-content {
+                padding: 30px 20px;
+            }
+            .kontakt-boxy {
+                flex-direction: row;
+                flex-wrap: nowrap; 
+                justify-content: center;
+            }
+            .hlavicka-nadpis-flex {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            .kontakt-boxy {
+                margin-bottom: 0;
+            }
+            
+            .grid-doporuceni {
+                grid-template-columns: 1fr; 
+            }
+            .karta-doporuceni {
+                padding: 20px; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+   <header class="hero">
+        <div class="hero-container">
+            <div class="hero-text">
+                
+                <div class="hlavicka-nadpis-flex">
+                    <h1>Ahoj, já jsem <br><span>Richard Herzog</span></h1>
+                    
+                    <div class="kontakt-boxy">
+                        <a href="tel:+420728211111" class="kontakt-tlacitko" title="Zavolat: +420 728 211 111">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        </a>
+                        <a href="mailto:herzog499@gmail.com" class="kontakt-tlacitko" title="Napsat e-mail: herzog499@gmail.com">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        </a>
+                    </div>
+                </div>
+                <p>Marketingový manažer, který spojuje strategii s praxí. Rád převezmu zodpovědnost za celé oddělení a rozvoj týmu, ale nejsem jen manažer od stolu. Když je potřeba, s chutí si vyhrnu rukávy a jdu tvořit kreativu pro sítě nebo se ponořím do dat.</p>
+            </div>
+
+            <img src="richard.png" alt="Richard Herzog" class="profilovka">
+        </div>
+
+        <div class="logo-slider">
+            <div class="logo-slide-track">
+                <img src="https://www.richardherzog.cz/logo_hf.png" class="slider-logo" alt="Klient 1">
+                <img src="https://www.richardherzog.cz/logo_maws.png" class="slider-logo" alt="Klient 2">
+                <img src="https://www.richardherzog.cz/logo_geneze.png" class="slider-logo" alt="Klient 3">
+                <img src="https://www.richardherzog.cz/logo_xm.png" class="slider-logo" alt="Klient 4">
+                <img src="https://www.richardherzog.cz/logo_trenyrkarna.png" class="slider-logo" alt="Klient 5">
+                <img src="https://www.richardherzog.cz/logo_nb.png" class="slider-logo" alt="Klient 6">
+                <img src="https://www.richardherzog.cz/logo_cemio.png" class="slider-logo" alt="Klient 7">
+                <img src="https://www.richardherzog.cz/logo_moira.png" class="slider-logo" alt="Klient 8">
+                <img src="https://www.richardherzog.cz/logo_mobilplus.png" class="slider-logo" alt="Klient 9">
+                <img src="https://www.richardherzog.cz/logo_reknihy.png" class="slider-logo" alt="Klient 10">
+                <img src="https://www.richardherzog.cz/logo_regals.png" class="slider-logo" alt="Klient 11">
+                <img src="https://www.richardherzog.cz/logo_twigsee.png" class="slider-logo" alt="Klient 12">
+                <img src="https://www.richardherzog.cz/logo_vacstar.png" class="slider-logo" alt="Klient 13">
+                <img src="https://www.richardherzog.cz/logo_beany.png" class="slider-logo" alt="Klient 15">
+                <img src="https://www.richardherzog.cz/logo_kk.png" class="slider-logo" alt="Klient 16">
+                <img src="https://www.richardherzog.cz/logo_br.png" class="slider-logo" alt="Klient 17">
+                <img src="https://www.richardherzog.cz/logo_hc.png" class="slider-logo" alt="Klient 18">
+               
+                <img src="https://www.richardherzog.cz/logo_hf.png" class="slider-logo" alt="Klient 1">
+                <img src="https://www.richardherzog.cz/logo_maws.png" class="slider-logo" alt="Klient 2">
+                <img src="https://www.richardherzog.cz/logo_geneze.png" class="slider-logo" alt="Klient 3">
+                <img src="https://www.richardherzog.cz/logo_xm.png" class="slider-logo" alt="Klient 4">
+                <img src="https://www.richardherzog.cz/logo_trenyrkarna.png" class="slider-logo" alt="Klient 5">
+                <img src="https://www.richardherzog.cz/logo_nb.png" class="slider-logo" alt="Klient 6">
+                <img src="https://www.richardherzog.cz/logo_cemio.png" class="slider-logo" alt="Klient 7">
+                <img src="https://www.richardherzog.cz/logo_moira.png" class="slider-logo" alt="Klient 8">
+                <img src="https://www.richardherzog.cz/logo_mobilplus.png" class="slider-logo" alt="Klient 9">
+                <img src="https://www.richardherzog.cz/logo_reknihy.png" class="slider-logo" alt="Klient 10">
+                <img src="https://www.richardherzog.cz/logo_regals.png" class="slider-logo" alt="Klient 11">
+                <img src="https://www.richardherzog.cz/logo_twigsee.png" class="slider-logo" alt="Klient 12">
+                <img src="https://www.richardherzog.cz/logo_vacstar.png" class="slider-logo" alt="Klient 13">
+                <img src="https://www.richardherzog.cz/logo_beany.png" class="slider-logo" alt="Klient 15">
+                <img src="https://www.richardherzog.cz/logo_kk.png" class="slider-logo" alt="Klient 16">
+                <img src="https://www.richardherzog.cz/logo_br.png" class="slider-logo" alt="Klient 17">
+                <img src="https://www.richardherzog.cz/logo_hc.png" class="slider-logo" alt="Klient 18">
+
+                <img src="https://www.richardherzog.cz/logo_hf.png" class="slider-logo" alt="Klient 1">
+                <img src="https://www.richardherzog.cz/logo_maws.png" class="slider-logo" alt="Klient 2">
+                <img src="https://www.richardherzog.cz/logo_geneze.png" class="slider-logo" alt="Klient 3">
+                <img src="https://www.richardherzog.cz/logo_xm.png" class="slider-logo" alt="Klient 4">
+                <img src="https://www.richardherzog.cz/logo_trenyrkarna.png" class="slider-logo" alt="Klient 5">
+                <img src="https://www.richardherzog.cz/logo_nb.png" class="slider-logo" alt="Klient 6">
+                <img src="https://www.richardherzog.cz/logo_cemio.png" class="slider-logo" alt="Klient 7">
+                <img src="https://www.richardherzog.cz/logo_moira.png" class="slider-logo" alt="Klient 8">
+                <img src="https://www.richardherzog.cz/logo_mobilplus.png" class="slider-logo" alt="Klient 9">
+                <img src="https://www.richardherzog.cz/logo_reknihy.png" class="slider-logo" alt="Klient 10">
+                <img src="https://www.richardherzog.cz/logo_regals.png" class="slider-logo" alt="Klient 11">
+                <img src="https://www.richardherzog.cz/logo_twigsee.png" class="slider-logo" alt="Klient 12">
+                <img src="https://www.richardherzog.cz/logo_vacstar.png" class="slider-logo" alt="Klient 13">
+                <img src="https://www.richardherzog.cz/logo_beany.png" class="slider-logo" alt="Klient 15">
+                <img src="https://www.richardherzog.cz/logo_kk.png" class="slider-logo" alt="Klient 16">
+                <img src="https://www.richardherzog.cz/logo_br.png" class="slider-logo" alt="Klient 17">
+                <img src="https://www.richardherzog.cz/logo_hc.png" class="slider-logo" alt="Klient 18">
+
+            </div>
+        </div>
+    </header>
+
+    <nav class="tabs-container">
+        <button class="tab-btn active" onclick="otevriZalozku('aktualni', this)">Aktuální práce</button>
+        <button class="tab-btn" onclick="otevriZalozku('zkusenosti', this)">Předchozí zkušenosti</button>
+        <button class="tab-btn" onclick="otevriZalozku('motivace', this)">Moje motivace</button>
+        <button class="tab-btn" onclick="otevriZalozku('nastroje', this)">Tech Stack & Nástroje</button>
+        <button class="tab-btn" onclick="otevriZalozku('doporuceni', this)">Doporučení</button>
+        <button class="tab-btn" onclick="otevriZalozku('o-mne', this)">O mně</button>
+    </nav>
+
+    <main class="content-area">
+        
+        <div id="aktualni" class="tab-content active">
+            
+            <div class="experience-timeline">
+                
+                <div class="polozka-cv">
+                    <div class="cv-titulky" style="margin-bottom: 15px;">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 5px;">
+                            <h3 style="margin: 0;">Performance & Reporting specialist</h3>
+                            <img src="https://www.richardherzog.cz/ulablogo.png" alt="Logo Unicorns Lab" style="height: 60px; width: auto; object-fit: contain; flex-shrink: 0;">
+                        </div>
+                        <div class="meta" style="margin: 0;">Unicorns Lab s.r.o. | 2026 – současnost</div>
+                    </div>
+                    
+                    <p>Kromě správy reklam se naplno věnuji <strong>datové automatizaci a propojování systémů</strong> (PPC, GA4, CRM). V Google Sheets tvořím výpočetní modely a v Looker Studiu vizualizuji výkonnost. Mým cílem je budovat pro klienty <strong>„jeden zdroj pravdy“</strong>. Analýzou tržních trendů a velkých dat generuji strategické insighty, které reálně posouvají byznys našich klientů vpřed.</p>
+
+                    <details class="skryte-detaily">
+                        <summary>Zobrazit klíčové projekty and insighty <span class="sipka-toggle">▼</span></summary>
+                        
+                        <div class="detaily-obsah">
+                            <div class="grid-o-mne">
+                                <div class="karta">
+                                    <h3><span class="ikona">🔗</span> Case Study: Datová integrace Shoptetu a BaseLinkeru</h3>
+                                    <p><strong>Výzva:</strong> Klient potřeboval v reálném čase sledovat, zda a jak spolu korelují prodeje na vlastním e-shopu s prodeji na marketplaces (Alza, Allegro, ...).</p>
+                                    <p><strong>Řešení:</strong> Namísto manuálního stahování dat jsem navrhl plnou automatizaci. Po nastudování dokumentace jsem s využitím AI napsal na míru <strong>Google Apps Script</strong>, který se přes API napojuje přímo do BaseLinkeru. Paralelně jsem v Shoptetu nakonfiguroval exportní feed objednávek. Obě datové sady se automaticky sbíhají do jedné tabulky, kde se data očistí a sjednotí se jejich formáty.</p>
+                                    <p><strong>Výsledek:</strong> Komplexní a plně automatizovaný dashboard, který v grafech vizualizuje korelace objednávek napříč kanály. Klient si může výkon interaktivně filtrovat podle kategorií či přímo zkoumat trendy na úrovni konkrétních produktů.</p>
+                                </div>
+                                <div class="karta">
+                                    <h3><span class="ikona">🎨</span> Od třítýdenního čekání k nové kreativě za 30 minut</h3>
+                                    <p>Když nám těsně před hlavní sezónou začala agentura dodávat grafiku s třítýdenním zpožděním a ve špatné kvalitě, <strong>nemohli jsme jen nečinně přihlížet</strong>. Připravil jsem detailní zadání a naučil custom AI nástroj pracovat s brandem klienta.</p>
+                                    <p><strong>Základní grafické podklady si nyní generuji sám a finálně je ladím v Canvě</strong>. Získali jsme tak obrovskou svobodu – místo frustrujícího čekání na externisty dokážeme bleskově reagovat na aktuální potřeby online prostředí a novou kreativu máme nasazenou klidně za půl hodiny.</p>
+                                </div>
+                                <div class="karta">
+                                    <h3><span class="ikona">🎯</span> Tvorba a škálování kreativních konceptů</h3>
+                                    <p>V době algoritmických sociálních sítí nestačí jeden statický formát. Pro klienty aktivně navrhuji rozmanité komunikační úhly pro jeden produkt – od unboxing videí a lifestylových fotek <strong>dětí komentující nový batoh</strong> s dinosaurem, přes <strong>recenze spokojených maminek</strong>, zdůraznění benefitů, až UGC. Tento multiformátový přístup nám umožňuje efektivně <strong>zasáhnout cílovou skupinu</strong> v celé její šíři a napříč nákupním trychtýřem.</p>
+                                </div>
+                                <div class="karta">
+                                    <h3><span class="ikona">📊</span> Analýza trhu a hledanosti</h3>
+                                    <p>Měsíčně stahujeme a ukládáme data o hledanosti z Googlu. Předdefinuji celý trh (kategorie, konkurence, marketplaces). Díky tomu vidíme, <strong>zda rosteme spolu s trhem, nebo ztrácíme podíl</strong>, a máme v rukou tvrdá data pro další strategii.</p>
+                                </div>
+                                <div class="karta">
+                                    <h3><span class="ikona">💡</span> Strategické přesahy</h3>
+                                    <p>Díky velkým datovým přehledům se mi daří nacházet klíčové příležitosti. U jednoho klienta jsme např. odhalili <strong>hromadný přesun zákazníků na marketplaces</strong>, což vedlo k okamžitému testování zalistování jeho produktů přímo tam.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="polozka-cv">
+                    <div class="cv-titulky" style="margin-bottom: 15px;">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 5px;">
+                            <h3 style="margin: 0;">Head of PPC team</h3>
+                            <img src="https://www.richardherzog.cz/ulablogo.png" alt="Logo Unicorns Lab" style="height: 60px; width: auto; object-fit: contain; flex-shrink: 0;">
+                        </div>
+                        <div class="meta" style="margin: 0;">Unicorns Lab s.r.o. | 2023 – 2025</div>
+                    </div>
+
+                    <p>Měl jsem na starosti <strong>vedení týmu 3 specialistů</strong> a koordinaci marketingových aktivit pro 9 firem ve 30 zemích světa s hlavním cílem: pomáhat českým firmám růst v zahraničí. V sezóně jsem spravoval rozpočty ve výši <strong>až 1,25 milionu Kč denně</strong>, přičemž cílem byl vždy zdravý meziroční nárůst (10–20 %) v kontextu vývoje daného trhu.</p>
+
+                    <details class="skryte-detaily">
+                        <summary>Zobrazit klíčové úspěchy <span class="sipka-toggle">▼</span></summary>
+                        
+                        <div class="detaily-obsah">
+                            <div class="grid-o-mne">
+                                <div class="karta">
+                                    <h3><span class="ikona">📺</span> Synergie TV a Onlinu</h3>
+                                    <p>Spolupracoval jsem s klienty při masivních <strong>televizních kampaních</strong>. Onlinem jsme maximalizovali dosah TV reklamy, <strong>dotazníkově měřili</strong> nárůst povědomí o značce a pomocí pokročilého remarketingu jsme efektivně vytěžovali skokově zvýšenou návštěvnost webu.</p>
+                                </div>
+                                <div class="karta">
+                                    <h3><span class="ikona">🎓</span> Rozvoj týmu</h3>
+                                    <p>Kromě samotného nastavení procesů jsem se intenzivně věnoval mentoringu. Prostřednictvím cílených školení, pravidelné zpětné vazby a každotýdenní společné práci na prioritách jsem z juniorních podřízených vychoval <strong>plně samostatné seniory</strong>. Ti následně převzali kompletní běžnou operativu pod křídly majitelů firmy.</p>
+                                </div>
+                                <div class="karta">
+                                    <h3><span class="ikona">🎯</span> Přesah do dalších oborů</h3>
+                                    <p>Místo pouhého výkonnostního marketingu a podpory brandu jsem řešil i mimooborové přesahy. U velkého fashion e-shopu jsme např. úpravou zobrazování slev <strong>znásobili konverzní poměr</strong>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="polozka-cv">
+                    <div class="cv-titulky" style="margin-bottom: 15px;">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 5px;">
+                            <h3 style="margin: 0;">PPC specialist</h3>
+                            <img src="https://www.richardherzog.cz/ulablogo.png" alt="Logo Unicorns Lab" style="height: 60px; width: auto; object-fit: contain; flex-shrink: 0;">
+                        </div>
+                        <div class="meta" style="margin: 0;">Unicorns Lab s.r.o. | 2020 – 2022</div>
+                    </div>
+
+                    <p>Zde jsem získal své pevné základy ve správě výkonnostních kampaní napříč platformami <strong>(Google Ads, Microsoft Ads, Facebook, Instagram, Sklik, TikTok)</strong> a naučil se komplexně přemýšlet nad celou zákaznickou cestou.</p>
+
+                    <details class="skryte-detaily">
+                        <summary>Zobrazit klíčové zkušenosti <span class="sipka-toggle">▼</span></summary>
+                        
+                        <div class="detaily-obsah">
+                            <div class="grid-o-mne">
+                                <div class="karta">
+                                    <h3><span class="ikona">🌍</span> Globální expanze</h3>
+                                    <p>Řídil jsem <strong>kampaně pro celý svět</strong> (B2B software pro školky). Získal jsem cenné lekce ze specifik různých trhů, a to od překvapivě výkonné africké Nigérie až po Mexiko, kde kampaně generovaly ohromné množství leadů.</p>
+                                </div>
+                                <div class="karta">
+                                    <h3><span class="ikona">🚀</span> Konverzní Landing Pages</h3>
+                                    <p>Rychle jsem pochopil, že samotný traffic nestačí. Začal jsem se proto aktivně učit, jak navrhovat a optimalizovat <strong>vysoce konverzní vstupní stránky</strong>, které návštěvníky z reklam reálně přetaví v zákazníky.</p>
+                                </div>
+                                <div class="karta">
+                                    <h3><span class="ikona">✍️</span> Synergie obsahu a PPC</h3>
+                                    <p>U segmentu krmiv pro zvířata jsem prokázal, že dobře cílené <strong>blogové články mohou tvořit velkou část obratu (až 1/3)</strong>. Kolem těchto článků jsme následně budovali celou kampaňovou strukturu.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="zkusenosti" class="tab-content">
+            
+            <div class="experience-timeline">
+                <div class="polozka-cv">
+                    
+                    <div class="cv-titulky" style="margin-bottom: 15px;">
+                        
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 5px;">
+                            <h3 style="margin: 0;">Senior CRM Specialist</h3>
+                            
+                            <img src="https://www.richardherzog.cz/logo_hc.png" alt="Logo Home Credit" style="height: 60px; width: auto; object-fit: contain; flex-shrink: 0;">
+                        </div>
+                        
+                        <div class="meta" style="margin: 0;">Home Credit a.s. | 2015 – 2020</div>
+                    </div>
+
+                    <p>Komplexní end-to-end řízení strategických CRM kampaní (hotovostní půjčky, konsolidace, revolvingové úvěry) s měsíčním zásahem v řádech <strong>desetitisíců klientů</strong> a správou rozpočtu okolo <strong>1 mil. Kč měsíčně</strong>. Zodpovědnost za celý životní cyklus kampaně – od úvodní analýzy, výběru klientů a nastavení obsahu, přes exekuci a A/B testování, až po reporting a prezentaci výsledků představenstvu.</p>
+
+                    <div style="margin-top: 20px; background-color: white; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);">
+                        <p style="margin: 0 0 15px 0; color: var(--text-hlavni);">Obsah a načasování jsem optimalizoval napříč všemi těmito kanály:</p>
+                        
+                        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                            <span style="background-color: #f8fafc; border: 1px solid #e2e8f0; color: var(--barva-hero); padding: 8px 16px; border-radius: 30px; font-size: 0.9rem; font-weight: 500; display: flex; align-items: center; gap: 6px;">
+                                <span>📧</span> E-mail marketing
+                            </span>
+                            <span style="background-color: #f8fafc; border: 1px solid #e2e8f0; color: var(--barva-hero); padding: 8px 16px; border-radius: 30px; font-size: 0.9rem; font-weight: 500; display: flex; align-items: center; gap: 6px;">
+                                <span>💬</span> Úderné SMS
+                            </span>
+                            <span style="background-color: #f8fafc; border: 1px solid #e2e8f0; color: var(--barva-hero); padding: 8px 16px; border-radius: 30px; font-size: 0.9rem; font-weight: 500; display: flex; align-items: center; gap: 6px;">
+                                <span>📱</span> Push notifikace do mobilu
+                            </span>
+                            <span style="background-color: #f8fafc; border: 1px solid #e2e8f0; color: var(--barva-hero); padding: 8px 16px; border-radius: 30px; font-size: 0.9rem; font-weight: 500; display: flex; align-items: center; gap: 6px;">
+                                <span>🎧</span> Telemarketing
+                            </span>
+                            <span style="background-color: #f8fafc; border: 1px solid #e2e8f0; color: var(--barva-hero); padding: 8px 16px; border-radius: 30px; font-size: 0.9rem; font-weight: 500; display: flex; align-items: center; gap: 6px;">
+                                <span>✉️</span> Fyzické dopisy (Direct mail)
+                            </span>
+                        </div>
+                    </div>
+
+                    <h4 style="color: var(--tmavsi-zelena); margin-top: 25px; margin-bottom: 10px; font-size: 1.15rem;">Klíčové zodpovědnosti a dovednosti</h4>
+                    <ul>
+                        <li><strong>Databázový marketing:</strong> Selekce klientů v nástroji SAS (moje kampaně sloužily jako best practice vzory pro zaučování nových kolegů).</li>
+                        <li><strong>Analytika a reporting:</strong> Vyhodnocování v Excelu, SQL a Tableau; mapování zákaznických cest, psaní business casů a finanční plánování.</li>
+                        <li><strong>Spolupráce napříč firmou:</strong> Úzké vyjednávání s odděleními řízení rizik, produktu, analytiky, marketingu, klientského call centra a telemarketingu.</li>
+                        <li><strong>Koordinace call centra:</strong> Řízení kapacit, náslechy hovorů a úprava call skriptů – inicioval a vedl jsem rozsáhlé školení o tvorbě kampaní pro desítky operátorů.</li>
+                    </ul>
+
+                    <h4 style="color: var(--tmavsi-zelena); margin-top: 40px; margin-bottom: 20px; font-size: 1.15rem;">Největší úspěchy a projekty (Impact)</h4>
+                    
+                    <div class="grid-o-mne">
+                        
+                        <div class="karta">
+                            <h3><span class="ikona">📈</span> Inovace produktů</h3>
+                            <p>Transformoval jsem upsellový produkt s nízkou ziskovostí na <strong>vysoce ziskové produkty</strong>, které skloubily velké objemy, vysoký konverzní poměr i skvělou marži.</p>
+                        </div>
+
+                        <div class="karta">
+                            <h3><span class="ikona">🎯</span> Optimalizace prodeje</h3>
+                            <p>Spolupracoval jsem na transformaci prodeje sloučením nabídky hotovostní půjčky a konsolidace do jednoho touchpointu. Tahle změna <strong>prokazatelně zvýšila konverzní poměr</strong> díky řešení více klientských potřeb najednou.</p>
+                        </div>
+
+                        <div class="karta">
+                            <h3><span class="ikona">🚀</span> Launch nové klientské cesty</h3>
+                            <p>Sám jsem navrhl, vytvořil a naimplementoval <strong>kompletní onboardingový proces</strong> pro nový revolvingový produkt. Pomocí A/B testingu v telemarketingu (welcome cally) se mi podařilo maximalizovat čerpání produktu.</p>
+                        </div>
+
+                        <div class="karta">
+                            <h3><span class="ikona">🤖</span> Skóringové modely</h3>
+                            <p>Byl jsem klíčovým členem týmu při nasazování matematických modelů pro cílení kampaní. Manuálně jsem definoval podmínky pro učení modelů a <strong>úspěšně A/B testoval expertní výběr</strong>.</p>
+                        </div>
+
+                        <div class="karta">
+                            <h3><span class="ikona">📊</span> Proaktivní analytika</h3>
+                            <p>Pro nezávislost na analytickém oddělení jsem se naučil <strong>SQL</strong>, napojil Excel přímo na datový sklad a <strong>plně zautomatizoval reporting</strong> a analýzu výsledků mých kampaní.</p>
+                        </div>
+
+                        <div class="karta">
+                            <h3><span class="ikona">⚙️</span> Oslovovací matice</h3>
+                            <p>Ve spolupráci s oddělením řízení rizik jsem <strong>zautomatizoval tvorbu báze</strong> oslovitelných klientů pro cross-sell a úspěšně testoval a zapojil do pravidelných kampaní semi-eligible klienty s vysokým konverzním potenciálem.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       <div id="motivace" class="tab-content">
+            
+            <div style="margin-bottom: 40px;">
+                <h2 style="font-size: 1.8rem; margin-bottom: 5px !important;">Moje motivace <span style="font-size: 1.5rem;">🔥</span></h2>
+                <p style="color: #64748b; font-size: 1.05rem; margin: 0; border-bottom: 2px solid #f1f5f9; padding-bottom: 15px;">Proč chci být součástí vašeho týmu a co vám mohu přinést.</p>
+            </div>
+            
+            <div class="grid-o-mne">
+                
+                <div class="karta">
+                    <h3><span class="ikona">🎯</span> Znalost z pohledu zákazníka</h3>
+                    <p>Co považuji za svou obrovskou konkurenční výhodu? Vaše prostředí začínám poznávat z té nejdůležitější perspektivy – <strong>přímo z pohledu vašeho koncového zákazníka</strong>.</p>
+                    <p>Jako táta malé dcerky se zajímám o to, jak se vyvíjí. Vím, že pro zdravý vývoj tělíčka je potřeba vybrat i správnou výbavu. Proto objevování této oblasti bude možná nejen mojí prací, ale i vášní. Bez toho bych totiž nebyl dobrý rodič.</p>
+                </div>
+
+                <div class="karta">
+                    <h3><span class="ikona">🏢</span> Touha po in-house roli a dopadu</h3>
+                    <p>Delší dobu mě už silně láká <strong>možnost posunu z agenturního prostředí přímo do in-house týmu</strong>. Práce v agentuře je sice skvělá škola, která mi dává obrovský rozhled a zkušenosti s desítkami různých projektů a strategií, ale začínám postrádat možnost ovlivňovat byznys od A do Z.</p>
+                    <p>Chci vidět hlubší, dlouhodobý dopad své práce na vývoj jedné konkrétní firmy. Chci být u zrodu strategické myšlenky, přes její realizaci až po finální vyhodnocení a další rozvoj.</p>
+                </div>
+
+            </div>
+
+            <div style="background: linear-gradient(135deg, #f4faeb 0%, #eef8df 100%); border-left: 4px solid var(--ziva-zelena); padding: 25px; border-radius: 0 12px 12px 0; margin: 30px 0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-style: italic; font-size: 1.25rem; color: var(--tmavsi-zelena); line-height: 1.6;">„Když jsem pak uviděl vaši nabídku, doslova jsem si řekl: Páni! Vždyť mě baví všechno kolem dětí. A co kdybych se jim mohl naplno věnovat i v práci?“</p>
+            </div>
+
+            <div class="karta" style="border-color: #cbd5e1; background-color: white;">
+                <p style="font-size: 1.1rem; margin-bottom: 20px; color: var(--text-hlavni);">Spojit svou profesní odbornost s něčím, co mi dává osobní smysl a reálně mě to baví, je pro mě ten největší hnací motor. Jsem přesvědčen, že kombinace mé motivace, letitých zkušeností v marketingu a perfektní znalosti vaší cílové skupiny ze mě dělá ideálního kandidáta na pozici marketingového a e-commerce managera.</p> 
+                <p style="margin: 0;"><strong style="color: var(--barva-hero); font-size: 1.15rem;">Pokud jsem vás zaujal, velmi rád s vámi proberu své nápady i osobně. ☕</strong></p>
+            </div>
+
+        </div>
+
+        <div id="nastroje" class="tab-content">
+            
+            <div style="margin-bottom: 40px;">
+                <h2 style="font-size: 1.8rem; margin-bottom: 5px !important;">Můj Tech Stack <span style="font-size: 1.5rem;">⚙️</span></h2>
+                <p style="color: #64748b; font-size: 1.05rem; margin: 0; border-bottom: 2px solid #f1f5f9; padding-bottom: 15px;">Seznam systémů, nástrojů a platforem, se kterými denně pracuji nebo je dobře ovládám.</p>
+            </div>
+
+            <div class="sekce-nastroju">
+                <h3><span>🎯</span> PPC & Výkonnostní marketing</h3>
+                <div class="grid-nastroje">
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/adsok.png" alt="Google Ads" class="nastroj-logo"><span class="nastroj-nazev">Google Ads</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/metaok.png" alt="Meta Ads" class="nastroj-logo"><span class="nastroj-nazev">Meta Ads</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/sklikok.png" alt="Sklik" class="nastroj-logo"><span class="nastroj-nazev">Sklik</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/tiktokok.png" alt="TikTok Ads" class="nastroj-logo"><span class="nastroj-nazev">TikTok Ads</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/linkedinok.png" alt="LinkedIn Ads" class="nastroj-logo"><span class="nastroj-nazev">LinkedIn Ads</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/msadsok.png" alt="Microsoft Ads (Bing)" class="nastroj-logo"><span class="nastroj-nazev">Microsoft Ads (Bing)</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/dotidotok.png" alt="Dotidot" class="nastroj-logo"><span class="nastroj-nazev">Dotidot</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/mergadook.png" alt="Mergado" class="nastroj-logo"><span class="nastroj-nazev">Mergado</span></div>
+                </div>
+            </div>
+
+            <div class="sekce-nastroju">
+                <h3><span>📊</span> Analytika, Data & Cloud</h3>
+                <div class="grid-nastroje">
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/GA4-logo.png" alt="Google Analytics" class="nastroj-logo"><span class="nastroj-nazev">GA4</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/tagmanager.png" alt="Tag Manager" class="nastroj-logo"><span class="nastroj-nazev">Tag Manager</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/datastudio.png" alt="Data Studio" class="nastroj-logo"><span class="nastroj-nazev">Data Studio</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/bigquery.png" alt="Big Query" class="nastroj-logo"><span class="nastroj-nazev">Big Query</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/cloud.png" alt="Google Cloud" class="nastroj-logo"><span class="nastroj-nazev">Google Cloud</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/searchconsole.png" alt="Search Console" class="nastroj-logo"><span class="nastroj-nazev">Search Console</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/clarity.png" alt="Clarity" class="nastroj-logo"><span class="nastroj-nazev">MS Clarity</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/mm.jpeg" alt="Marketing Miner" class="nastroj-logo"><span class="nastroj-nazev">Marketing Miner</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/OpenRefine_New_Logo.png" alt="Open Refine" class="nastroj-logo"><span class="nastroj-nazev">Open Refine</span></div>
+                </div>
+            </div>
+
+            <div class="sekce-nastroju">
+                <h3><span>🛒</span> E-commerce platformy & CRO</h3>
+                <div class="grid-nastroje">
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/shoptetlogo.png" alt="Shoptet" class="nastroj-logo"><span class="nastroj-nazev">Shoptet</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/shopify-logo-png-transparent.png" alt="Shopify" class="nastroj-logo"><span class="nastroj-nazev">Shopify</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/woo.png" alt="WooCommerce" class="nastroj-logo"><span class="nastroj-nazev">WooCommerce</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/gmclogo.png" alt="Merchant Center" class="nastroj-logo"><span class="nastroj-nazev">Merchant Center</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/optimonk.png" alt="Optimonk" class="nastroj-logo"><span class="nastroj-nazev">Optimonk</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/Google-PageSpeed-Insights-Logo-770x426.png" alt="PageSpeed Insights" class="nastroj-logo"><span class="nastroj-nazev">PageSpeed</span></div>
+                </div>
+            </div>
+
+            <div class="sekce-nastroju">
+                <h3><span>🤖</span> AI & Automatizace</h3>
+                <div class="grid-nastroje">
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/gptlogo.png" alt="ChatGPT" class="nastroj-logo"><span class="nastroj-nazev">ChatGPT</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/geminilogo.png" alt="Gemini" class="nastroj-logo"><span class="nastroj-nazev">Gemini</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/claude-icon-logo.png" alt="Claude Code" class="nastroj-logo"><span class="nastroj-nazev">Claude Code</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/n8n.png" alt="N8N" class="nastroj-logo"><span class="nastroj-nazev">N8N</span></div>
+                </div>
+            </div>
+
+            <div class="sekce-nastroju">
+                <h3><span>📋</span> Projektové řízení & Kreativa</h3>
+                <div class="grid-nastroje">
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/canva.png" alt="Canva" class="nastroj-logo"><span class="nastroj-nazev">Canva</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/miro.png" alt="Miro" class="nastroj-logo"><span class="nastroj-nazev">Miro</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/Notion-logo.svg.png" alt="Notion" class="nastroj-logo"><span class="nastroj-nazev">Notion</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/Asana-Symbol.png" alt="Asana" class="nastroj-logo"><span class="nastroj-nazev">Asana</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/freelo.jpg" alt="Freelo" class="nastroj-logo"><span class="nastroj-nazev">Freelo</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/trello.png" alt="Trello" class="nastroj-logo"><span class="nastroj-nazev">Trello</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/atria.png" alt="Atria" class="nastroj-logo"><span class="nastroj-nazev">Atria</span></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="doporuceni" class="tab-content">
+            
+    <div style="margin-bottom: 40px;">
+        <h2 style="font-size: 1.8rem; margin-bottom: 5px !important;">Co o mně říkají klienti a kolegové <span style="font-size: 1.5rem;">💬</span></h2>
+        <p style="color: #64748b; font-size: 1.05rem; margin: 0; border-bottom: 2px solid #f1f5f9; padding-bottom: 15px;">Přečtěte si, jak naši společnou práci a výsledky hodnotí lidé z praxe.</p>
+    </div>
+    
+    <div class="grid-doporuceni">
+        
+        <div class="karta-doporuceni">
+            <div class="doporuceni-text">
+                <p>S Richardem byla spolupráce na rozšiřování aplikace Twigsee do zahraničí úžasnou zkušeností. Jeho nápady a proaktivní přístup byly nepostradatelné při objevování nových trhů. Vedli jsme PPC kampaně, které jsme pravidelně optimalizovali. Navíc jsme obdrželi cenné rady ohledně struktury landing pages. Richarda mohu vřele doporučit na profesní i osobní úrovni. Pokud potřebujete spolehlivost, zodpovědnost, proaktivitu a výkon, Richard je tím pravým člověkem.</p>
+            </div>
+            <div class="doporuceni-autor">
+                <img src="https://www.richardherzog.cz/lujza.jpeg" alt="Lujza Olsen" class="autor-foto">
+                <div class="autor-info">
+                    <strong>Lujza Olsen</strong>
+                    <span>Marketing Manager at Educteus holding with Bakaláři Software and Twigsee</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="karta-doporuceni">
+            <div class="doporuceni-text">
+                <p>Když e-shop KrmímKvalitně.cz spolupracoval s agenturou ULab, byl to právě Richard, kdo měl KK na starost. Byla to velmi příjemná a opravdu výkonná spolupráce. Kampaně pod jeho vedením splňovaly domluvené cíle a Richard sám přicházel s nápady a návrhy co ještě můžeme udělat navíc, co vyzkoušet, co by mohlo přinést ještě víc...takže za KrmímKvalitně určitě doporučujeme a děkujeme za skvělou spolupráci.</p>
+            </div>
+            <div class="doporuceni-autor">
+                <img src="https://www.richardherzog.cz/martinklega.jpeg" alt="Martin Klega" class="autor-foto">
+                <div class="autor-info">
+                    <strong>Martin Klega</strong>
+                    <span>Business Design and Strategy, Marketing Research, User's testing</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="karta-doporuceni">
+            <div class="doporuceni-text">
+                <p>S Richardem jsem spolupracovala řadu let a byla u jeho profesního růstu z juniorní pozice do pozice samostatného seniorního campaign managera. Do práce přinášel nové nápady, byl výjimečný svou kreativitou, flexibilitou, samostatností i týmovou prací. Spolupráce s ním byla radost a budu jedině ráda, pokud se naše profesní cesty v budoucnu opět protnou.</p>
+            </div>
+            <div class="doporuceni-autor">
+                <img src="https://www.richardherzog.cz/verca.jpeg" alt="Veronika Špačková" class="autor-foto">
+                <div class="autor-info">
+                    <strong>Veronika Špačková</strong>
+                    <span>Business Consulting ve společnosti ADDVERY</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="karta-doporuceni">
+            <div class="doporuceni-text">
+                <p>S Richardem jsem se poznal po nástupu do XM.cz. Hned od začátku jsem uvítal jeho pro-aktivitu a přístup k vedení kampaní. Vždy dodržoval stanovený plán PNO a pokud se něco stalo, bleskově vše vysvětlil. Když jsem se potřeboval na Tomato se zeptat či zavolat, nikdy to nebyl problém. Díky Richardovi jsem se dozvěděl a naučil spousta užitečných věcí z oblasti mailingu, PPC a GA. Pokud hledáte někoho na správu PPC na Google, Seznamu či FB, tak je Richard ten správný člověk.</p>
+            </div>
+            <div class="doporuceni-autor">
+                <img src="https://www.richardherzog.cz/blankperson.jpeg" alt="Marcel Mastík" class="autor-foto">
+                <div class="autor-info">
+                    <strong>Marcel Mastík</strong>
+                    <span>Online marketing & e-commerce</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="karta-doporuceni">
+            <div class="doporuceni-text">
+                <p>S Richardem jsme se poznali ve firmě Home Credit, kde jsme se podíleli na řešení nestandardních požadavků zákazníků. Jeho výjimečné nápady, brilantní logika i maximální nasazení mne zkrátka přesvědčili, že s tímhle člověkem chci spolupracovat! Já jen doufám, že Richard své špičkové schopnosti uplatní v plánování reklamních strategií nebo v PPC. Právě u těchto projektů se zase můžeme setkat.</p>
+            </div>
+            <div class="doporuceni-autor">
+                <img src="https://www.richardherzog.cz/pepa.jpeg" alt="Josef Drdlíček" class="autor-foto">
+                <div class="autor-info">
+                    <strong>Josef Drdlíček</strong>
+                    <span>IT Business Analyst & AI Solutions Consultant</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div style="margin-top: 40px; padding-top: 25px; border-top: 2px solid #f1f5f9; display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap;">
+        <span style="color: #64748b; font-size: 0.95rem; font-weight: 500;">Všechna doporučení jsou převzatá z LinkedInu a jsou plně ověřitelná na mém profilu:</span>
+        
+        <a href="https://www.linkedin.com/in/herzogrichard" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" title="Přejít na můj LinkedIn profil">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="#0a66c2">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+        </a>
+    </div>
+
+</div>
+
+        <div id="o-mne" class="tab-content">
+            
+            <div style="margin-bottom: 40px;">
+    <h2 style="font-size: 1.8rem; margin-bottom: 5px !important;">Něco málo o mně</h2>
+    <p style="color: #64748b; font-size: 1.05rem; margin: 0; border-bottom: 2px solid #f1f5f9; padding-bottom: 15px;">Kdo jsem, když zrovna nesedím u tabulek a kampaní.</p>
+            </div>
+            
+            <div class="grid-o-mne">
+                
+                <div class="karta">
+                    <h3><span class="ikona">👨‍👩‍👧</span> Osobní život</h3>
+                    <p>Je mi 34 let, jsem <strong>manžel a nadšený táta</strong> skoro tříleté dcerky. Naplno si užívám, když jdeme spolu na hřiště, když ji učím jezdit na kole, nebo si jen čteme pohádky.</p>
+                    <p>Mojí nedílnou součástí je ale i aktivní společenský život. Velmi rád se setkávám s přáteli a <strong>organizace větších skupin</strong>, ať už jde o společné víkendové výlety nebo rovnou dovolené, je mi velmi vlastní.</p>
+                </div>
+
+                <div class="karta">
+                    <h3><span class="ikona">🏸</span> Zájmy a odpočinek</h3>
+                    <p>Když potřebuji dobít baterky a vyčistit si hlavu, jdu si zahrát <strong>badminton</strong> nebo <strong>squash</strong>. Mám rád i trochu adrenalinu. Rád <strong>jezdím na motorce</strong>, v posledních letech jsem projel například velkou část Rumunska a celou Sardínii. Mou velkou vášní je také <strong>jachting</strong>, letos plánuji poprvé vyrazit i na rodinnou plavbu s malými dětmi do Chorvatska. Udržuje mě to v tempu a učí rychle reagovat na nové situace.</p>
+                </div>
+
+                <div class="karta">
+                    <h3><span class="ikona">📚</span> Seberozvoj</h3>
+                    <p>Mám maturitu na obchodní akademii v Brně a bez problémů se <strong>domluvím anglicky</strong>. Seberozvoj je obrovskou součástí mého života a neustále sleduji trendy v oboru, abych nestál na místě. Své znalosti si mimo jiné každoročně potvrzuji obnovováním <strong>5 certifikací na Google Ads</strong> (Search, Display, Video, Shopping, Data). Rád také sáhnu po dobré <strong>knize o marketingu</strong>, naposledy mě například velmi oslovila Alchymie od Rory Sutherland.</p>
+                    <p>Pravidelně se <strong>účastním marketingových konferencí</strong> – loni jsem se například vypravil s týmem na prestižní AdWorld Experience v italské Boloni, u nás v Česku pak pravidelně jezdím na akce jako PPC Restart nebo Mergado Fest. Naše firma navíc organizuje <strong>PPC Camp a PPC Barbeque</strong>, kde tu a tam rád přiložím ruku k dílu a pomůžu s organizací.</p>
+                </div>
+
+                <div class="karta">
+                    <h3><span class="ikona">🤖</span> AI a technologie</h3>
+                    <p>Fascinuje mě, kam se svět technologií posouvá. S umělou inteligencí si ale jen nechatuju, denně ji zapojuji do nastavování automatizací. Vytvořil jsem například <strong>systém pro automatické stahování novinek</strong> ze světa PPC, internetu i sociálních sítí a jejich pravidelné zasílání všem kolegům na firemní e-mail. Mají tak nejčerstvější oborové novinky naservírované zcela bez práce.</p>
+                    <p>Pamatuju také doby, kdy nás při automatizaci procesů v Excelu limitovaly jen naše znalosti nekonečné databáze vzorců. To už dnes díky AI odpadá – jsem díky ní schopen stavět <strong>rozsáhlé databáze</strong> pro modelování metrik, jež následně fungují jako jeden spolehlivý zdroj pravdy (propojení více zdrojů do jednoho). S klientem jsme tak schopní daleko rychleji odhalit pravdy skryté v průměrování velkého množství dat.</p>
+                    <p>Není to ale jen o datech, v dnešním světě jsou neuvěřitelně <strong>důležité kreativy. Jsem schopný je generovat a upravovat</strong> do takové podoby, že se je moji klienti nebojí nasazovat na sociálních sítích.</p>
+                </div>
+
+                <div class="karta karta-highlight">
+                    <h3><span class="ikona">💻</span> Jedna zajímavost na závěr: Jak vznikl tento web?</h3>
+                    <p>Abych vám dokázal odprezentovat informace o sobě zajímavou formou, ukázal svou motivaci a nezůstal jen u nudných černých písmen na staré A4 v PDF, ponořil jsem se do tzv. <strong>„vibe codingu“</strong>.</p>
+                    <p>S pomocí umělé inteligence jsem tento web od nuly navrhl a následně přes <strong>GitHub</strong> zveřejnil. Vzal jsem to jako skvělý experiment: AI psala kód a já zastal roli zadavatele a projekťáka. V praxi jsem si tak vyzkoušel, jak efektivně promptovat, iterovat změny, řešit nečekané zádrhele s verzováním v Gitu a dotáhnout vizi až do nasazení na produkci.</p>
+                    <p>Je to pro mě ten nejlepší praktický důkaz toho, co v textu výše jen tvrdím: <strong>když člověk umí efektivně využít dnešní technologie, dokáže rychle zrealizovat naprosto cokoliv.</strong></p>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function otevriZalozku(idZalozky, tlacitko) {
+            let obsahy = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < obsahy.length; i++) {
+                obsahy[i].classList.remove("active");
+            }
+
+            let tlacitka = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tlacitka.length; i++) {
+                tlacitka[i].classList.remove("active");
+            }
+
+            // 1. Aktivujeme nový obsah a tlačítko
+            let aktivniObsah = document.getElementById(idZalozky);
+            aktivniObsah.classList.add("active");
+            tlacitko.classList.add("active");
+
+            // 2. Najdeme sticky menu a zjistíme jeho aktuální výšku v pixelech
+            let menu = document.querySelector('.tabs-container');
+            let vyskaMenu = menu.offsetHeight;
+
+            // 3. Spočítáme absolutní pozici začátku nového obsahu vůči úplnému vršku stránky
+            let poziceObsahu = aktivniObsah.getBoundingClientRect().top + window.scrollY;
+
+            // 4. Odrolujeme na začátek obsahu minus výška menu (a minus 20px rezerva, ať to má čistý padding)
+            window.scrollTo({
+                top: poziceObsahu - vyskaMenu - 20,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>

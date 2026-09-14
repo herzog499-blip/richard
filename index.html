@@ -188,7 +188,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- STYL PRO SEKCI O MNĚ (KARTY) --- */
+        /* --- STYL PRO VÝSLEDKY A CASE STUDIES (KARTY) --- */
         .grid-o-mne {
             display: grid;
             grid-template-columns: 1fr;
@@ -242,35 +242,9 @@
             margin-bottom: 0;
         }
 
-        .karta-highlight {
-            background: linear-gradient(135deg, #f4faeb 0%, #eef8df 100%);
-            border-color: #d9f99d;
-        }
-        
-        .karta-highlight h3 {
-            border-bottom-color: #bef264;
-            color: var(--tmavsi-zelena);
-        }
-
         /* --- STYL PRO NÁSTROJE A SYSTÉMY (TECH STACK) --- */
         .sekce-nastroju {
             margin-bottom: 40px;
-            background: #f8fafc;
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
-        }
-
-        .sekce-nastroju h3 {
-            color: var(--tmavsi-zelena);
-            font-size: 1.25rem;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            margin-top: 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         .grid-nastroje {
@@ -315,11 +289,29 @@
             line-height: 1.2;
         }
 
-        /* --- STYL PRO DOPORUČENÍ (TESTIMONIALS) --- */
+        /* --- STYL PRO DOPORUČENÍ (TESTIMONIALS - CAROUSEL) --- */
+        .doporuceni-wrapper {
+            position: relative;
+            margin-top: 20px;
+            /* Efekt vytracení do ztracena na pravé straně */
+            -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+            mask-image: linear-gradient(to right, black 85%, transparent 100%);
+        }
+
         .grid-doporuceni {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            display: flex;
             gap: 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            padding-bottom: 20px; /* Místo pro scrollbar */
+            -ms-overflow-style: none; /* Skryje scrollbar v IE a Edge */
+            scrollbar-width: none; /* Skryje scrollbar ve Firefoxu */
+        }
+        
+        /* Skryje scrollbar v Chrome/Safari, ale ponechá funkčnost */
+        .grid-doporuceni::-webkit-scrollbar {
+            display: none;
         }
 
         .karta-doporuceni {
@@ -331,6 +323,10 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            /* Karty se budou ukazovat po dvou vedle sebe */
+            min-width: calc(50% - 10px); 
+            scroll-snap-align: start;
+            flex-shrink: 0;
         }
 
         .doporuceni-text {
@@ -385,6 +381,31 @@
             color: #64748b;
             line-height: 1.3;
             margin-top: 2px;
+        }
+
+        /* Tlačítko pro posun carouselu (viditelné spíše na desktopu) */
+        .posun-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--ziva-zelena);
+            color: var(--barva-hero);
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            z-index: 10;
+            transition: all 0.2s ease;
+        }
+
+        .posun-btn:hover {
+            transform: translateY(-50%) scale(1.1);
         }
 
         /* --- JEZDÍCÍ PÁS S LOGY (KOLOTOČ) --- */
@@ -457,11 +478,12 @@
                 width: 100%;
                 box-sizing: border-box;
             }
-            .grid-doporuceni {
-                grid-template-columns: 1fr; 
-            }
             .karta-doporuceni {
+                min-width: 85%; /* Na mobilu ukazuje jednu kartu a kousek další */
                 padding: 20px; 
+            }
+            .posun-btn {
+                display: none; /* Na mobilu se posouvá swipe prstem, tlačítko překáží */
             }
         }
     </style>
@@ -528,13 +550,12 @@
         <!-- PILÍŘ 1: PPC -->
         <div id="ppc-obsah" class="tab-content active">
             
-            <div style="margin-bottom: 30px;">
+            <div style="margin-bottom: 20px;">
                 <h2 style="font-size: 1.8rem; margin-bottom: 5px !important;">Kampaně, které dávají smysl</h2>
                 <p style="color: #64748b; font-size: 1.05rem; margin: 0;">Škálování výkonu napříč trhy s důrazem na PNO a ROI.</p>
             </div>
 
             <div class="sekce-nastroju">
-                <h3><span>🛠</span> Tech Stack (PPC)</h3>
                 <div class="grid-nastroje">
                     <div class="nastroj-karta"><img src="https://www.richardherzog.cz/adsok.png" alt="Google Ads" class="nastroj-logo"><span class="nastroj-nazev">Google Ads</span></div>
                     <div class="nastroj-karta"><img src="https://www.richardherzog.cz/metaok.png" alt="Meta Ads" class="nastroj-logo"><span class="nastroj-nazev">Meta Ads</span></div>
@@ -561,23 +582,17 @@
                     <p>Řídil jsem kampaně pro celý svět (B2B software). Získal jsem cenné lekce ze specifik různých trhů, a to od překvapivě výkonné africké Nigérie až po Mexiko, kde kampaně generovaly ohromné množství leadů. Zároveň jsem u e-commerce projektů <strong>upravoval zobrazování slev, čímž jsme znásobili konverzní poměr</strong>.</p>
                 </div>
             </div>
-
-            <div class="karta karta-highlight">
-                <h3><span class="ikona">🏃‍♂️</span> Exekutiva a tah na branku (Něco o mně)</h3>
-                <p>„Když zrovna neškáluji kampaně, potřebuji dynamiku a rychlé tempo. Ať už jde o ostrou výměnu na kurtu při squashi či badmintonu, nebo když si čistím hlavu za řídítky své Yamahy Fazer. Svižné tempo si udržuji i v hudbě, nejčastěji mi do toho hrají Foo Fighters, AC/DC nebo Kabáti.“</p>
-            </div>
         </div>
 
         <!-- PILÍŘ 2: DATA -->
         <div id="data-obsah" class="tab-content">
             
-            <div style="margin-bottom: 30px;">
+            <div style="margin-bottom: 20px;">
                 <h2 style="font-size: 1.8rem; margin-bottom: 5px !important;">Budování „jednoho zdroje pravdy“</h2>
                 <p style="color: #64748b; font-size: 1.05rem; margin: 0;">Integrace, automatizace a reporting napříč platformami.</p>
             </div>
 
             <div class="sekce-nastroju">
-                <h3><span>🛠</span> Tech Stack (Data)</h3>
                 <div class="grid-nastroje">
                     <div class="nastroj-karta"><img src="https://www.richardherzog.cz/GA4-logo.png" alt="GA4" class="nastroj-logo"><span class="nastroj-nazev">GA4</span></div>
                     <div class="nastroj-karta"><img src="https://www.richardherzog.cz/tagmanager.png" alt="GTM" class="nastroj-logo"><span class="nastroj-nazev">Tag Manager</span></div>
@@ -605,77 +620,79 @@
                     <p>Z mých předchozích zkušeností jsem schopen napojit se přes SQL přímo na datový sklad, plně zautomatizovat reporting a definovat podmínky pro učení modelů. Díky velkým datovým přehledům se mi daří nacházet klíčové příležitosti – u jednoho klienta jsme např. odhalili hromadný přesun zákazníků na marketplaces, což vedlo k okamžitému zalistování jeho produktů.</p>
                 </div>
             </div>
-
-            <div class="karta karta-highlight" style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-color: #bfdbfe;">
-                <h3 style="border-bottom-color: #93c5fd; color: #1e40af;"><span class="ikona">🧩</span> Systém a plánování (Něco o mně)</h3>
-                <p>„Ve světě dat miluji přesnost a budování fungujících celků. Tenhle mindset se propisuje i do mého volna. Baví mě vymýšlet optimální strategie u deskovek jako Terraforming Mars či Race for the Galaxy, nebo v kuchyni při ladění hydratace těsta na neapolskou pizzu a pečení domácích kváskových štrůdlů.“</p>
-            </div>
         </div>
 
-        <!-- SPOLEČNÁ ZÁVĚREČNÁ SEKCE: DOPORUČENÍ -->
+        <!-- SPOLEČNÁ ZÁVĚREČNÁ SEKCE: DOPORUČENÍ (CAROUSEL) -->
         <div style="margin-top: 60px; padding-top: 40px; border-top: 2px solid #e2e8f0;">
-            <div style="margin-bottom: 40px; text-align: center;">
+            <div style="margin-bottom: 20px; text-align: center;">
                 <h2 style="font-size: 1.8rem; margin-bottom: 5px !important; color: var(--barva-hero);">Co o mně říkají klienti a kolegové <span style="font-size: 1.5rem;">💬</span></h2>
                 <p style="color: #64748b; font-size: 1.05rem; margin: 0;">Přečtěte si, jak naši společnou práci a výsledky hodnotí lidé z praxe.</p>
             </div>
             
-            <div class="grid-doporuceni">
-                
-                <div class="karta-doporuceni">
-                    <div class="doporuceni-text">
-                        <p>S Richardem byla spolupráce na rozšiřování aplikace Twigsee do zahraničí úžasnou zkušeností. Jeho nápady a proaktivní přístup byly nepostradatelné při objevování nových trhů. Vedli jsme PPC kampaně, které jsme pravidelně optimalizovali. Navíc jsme obdrželi cenné rady ohledně struktury landing pages. Richarda mohu vřele doporučit na profesní i osobní úrovni.</p>
-                    </div>
-                    <div class="doporuceni-autor">
-                        <img src="https://www.richardherzog.cz/lujza.jpeg" alt="Lujza Olsen" class="autor-foto">
-                        <div class="autor-info">
-                            <strong>Lujza Olsen</strong>
-                            <span>Marketing Manager at Educteus holding</span>
+            <div class="doporuceni-wrapper">
+                <!-- Tlačítko posunu pro Desktop -->
+                <button class="posun-btn" onclick="posunCarousel()" aria-label="Posunout doprava">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+
+                <div class="grid-doporuceni" id="doporuceni-container">
+                    
+                    <div class="karta-doporuceni">
+                        <div class="doporuceni-text">
+                            <p>S Richardem byla spolupráce na rozšiřování aplikace Twigsee do zahraničí úžasnou zkušeností. Jeho nápady a proaktivní přístup byly nepostradatelné při objevování nových trhů. Vedli jsme PPC kampaně, které jsme pravidelně optimalizovali. Navíc jsme obdrželi cenné rady ohledně struktury landing pages.</p>
+                        </div>
+                        <div class="doporuceni-autor">
+                            <img src="https://www.richardherzog.cz/lujza.jpeg" alt="Lujza Olsen" class="autor-foto">
+                            <div class="autor-info">
+                                <strong>Lujza Olsen</strong>
+                                <span>Marketing Manager at Educteus holding</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-        
-                <div class="karta-doporuceni">
-                    <div class="doporuceni-text">
-                        <p>Když e-shop KrmímKvalitně.cz spolupracoval s agenturou ULab, byl to právě Richard, kdo měl KK na starost. Byla to velmi příjemná a opravdu výkonná spolupráce. Kampaně pod jeho vedením splňovaly domluvené cíle a Richard sám přicházel s nápady a návrhy co ještě můžeme udělat navíc, co vyzkoušet... takže za KrmímKvalitně určitě doporučujeme.</p>
-                    </div>
-                    <div class="doporuceni-autor">
-                        <img src="https://www.richardherzog.cz/martinklega.jpeg" alt="Martin Klega" class="autor-foto">
-                        <div class="autor-info">
-                            <strong>Martin Klega</strong>
-                            <span>Business Design and Strategy</span>
+            
+                    <div class="karta-doporuceni">
+                        <div class="doporuceni-text">
+                            <p>Když e-shop KrmímKvalitně.cz spolupracoval s agenturou ULab, byl to právě Richard, kdo měl KK na starost. Byla to velmi příjemná a opravdu výkonná spolupráce. Kampaně pod jeho vedením splňovaly domluvené cíle a Richard sám přicházel s nápady a návrhy co ještě můžeme udělat navíc, co vyzkoušet... takže za KrmímKvalitně určitě doporučujeme.</p>
+                        </div>
+                        <div class="doporuceni-autor">
+                            <img src="https://www.richardherzog.cz/martinklega.jpeg" alt="Martin Klega" class="autor-foto">
+                            <div class="autor-info">
+                                <strong>Martin Klega</strong>
+                                <span>Business Design and Strategy</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-        
-                <div class="karta-doporuceni">
-                    <div class="doporuceni-text">
-                        <p>S Richardem jsem spolupracovala řadu let a byla u jeho profesního růstu z juniorní pozice do pozice samostatného seniorního campaign managera. Do práce přinášel nové nápady, byl výjimečný svou kreativitou, flexibilitou, samostatností i týmovou prací. Spolupráce s ním byla radost a budu jedině ráda, pokud se naše profesní cesty v budoucnu opět protnou.</p>
-                    </div>
-                    <div class="doporuceni-autor">
-                        <img src="https://www.richardherzog.cz/verca.jpeg" alt="Veronika Špačková" class="autor-foto">
-                        <div class="autor-info">
-                            <strong>Veronika Špačková</strong>
-                            <span>Business Consulting ve společnosti ADDVERY</span>
+            
+                    <div class="karta-doporuceni">
+                        <div class="doporuceni-text">
+                            <p>S Richardem jsem spolupracovala řadu let a byla u jeho profesního růstu z juniorní pozice do pozice samostatného seniorního campaign managera. Do práce přinášel nové nápady, byl výjimečný svou kreativitou, flexibilitou, samostatností i týmovou prací. Spolupráce s ním byla radost a budu jedině ráda, pokud se naše profesní cesty v budoucnu opět protnou.</p>
+                        </div>
+                        <div class="doporuceni-autor">
+                            <img src="https://www.richardherzog.cz/verca.jpeg" alt="Veronika Špačková" class="autor-foto">
+                            <div class="autor-info">
+                                <strong>Veronika Špačková</strong>
+                                <span>Business Consulting ve společnosti ADDVERY</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-        
-                <div class="karta-doporuceni">
-                    <div class="doporuceni-text">
-                        <p>S Richardem jsem se poznal po nástupu do XM.cz. Hned od začátku jsem uvítal jeho pro-aktivitu a přístup k vedení kampaní. Vždy dodržoval stanovený plán PNO a pokud se něco stalo, bleskově vše vysvětlil. Díky Richardovi jsem se dozvěděl a naučil spousta užitečných věcí z oblasti mailingu, PPC a GA.</p>
-                    </div>
-                    <div class="doporuceni-autor">
-                        <img src="https://www.richardherzog.cz/blankperson.jpeg" alt="Marcel Mastík" class="autor-foto">
-                        <div class="autor-info">
-                            <strong>Marcel Mastík</strong>
-                            <span>Online marketing & e-commerce</span>
+            
+                    <div class="karta-doporuceni">
+                        <div class="doporuceni-text">
+                            <p>S Richardem jsem se poznal po nástupu do XM.cz. Hned od začátku jsem uvítal jeho pro-aktivitu a přístup k vedení kampaní. Vždy dodržoval stanovený plán PNO a pokud se něco stalo, bleskově vše vysvětlil. Díky Richardovi jsem se dozvěděl a naučil spousta užitečných věcí z oblasti mailingu, PPC a GA.</p>
+                        </div>
+                        <div class="doporuceni-autor">
+                            <img src="https://www.richardherzog.cz/blankperson.jpeg" alt="Marcel Mastík" class="autor-foto">
+                            <div class="autor-info">
+                                <strong>Marcel Mastík</strong>
+                                <span>Online marketing & e-commerce</span>
+                            </div>
                         </div>
                     </div>
+            
                 </div>
-        
             </div>
         
-            <div style="margin-top: 40px; padding-top: 25px; display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <div style="margin-top: 20px; padding-top: 25px; display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap;">
                 <span style="color: #64748b; font-size: 0.95rem; font-weight: 500;">Všechna doporučení jsou plně ověřitelná na mém LinkedIn profilu:</span>
                 <a href="https://www.linkedin.com/in/herzogrichard" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; transition: transform 0.2s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="#0a66c2">
@@ -687,25 +704,37 @@
 
     </main>
 
-    <!-- Skript pro přepínání Pilířů -->
+    <!-- Skripty -->
     <script>
+        // Přepínání Pilířů
         function otevriZalozku(idZalozky, tlacitko) {
-            // Skryj všechny záložky
             let obsahy = document.getElementsByClassName("tab-content");
             for (let i = 0; i < obsahy.length; i++) {
                 obsahy[i].classList.remove("active");
             }
 
-            // Deaktivuj všechna tlačítka
             let tlacitka = document.getElementsByClassName("tab-btn");
             for (let i = 0; i < tlacitka.length; i++) {
                 tlacitka[i].classList.remove("active");
             }
 
-            // Aktivuj kliknuté
             let aktivniObsah = document.getElementById(idZalozky);
             aktivniObsah.classList.add("active");
             tlacitko.classList.add("active");
+        }
+
+        // Posun Carouselu doporučení
+        function posunCarousel() {
+            const container = document.getElementById('doporuceni-container');
+            // Zjistíme šířku jedné karty včetně mezery
+            const cardWidth = container.querySelector('.karta-doporuceni').offsetWidth + 20; 
+            
+            // Pokud jsme na konci, vrátíme se na začátek, jinak posuneme o jednu kartu doprava
+            if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
+                container.scrollBy({ left: -container.scrollWidth, behavior: 'smooth' });
+            } else {
+                container.scrollBy({ left: cardWidth, behavior: 'smooth' });
+            }
         }
     </script>
 </body>

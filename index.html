@@ -293,9 +293,9 @@
         .doporuceni-wrapper {
             position: relative;
             margin-top: 20px;
-            /* Efekt vytracení do ztracena na pravé straně */
-            -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
-            mask-image: linear-gradient(to right, black 85%, transparent 100%);
+            /* Na desktopu mizí až konec 3. vykukující karty (93% - 100%) */
+            -webkit-mask-image: linear-gradient(to right, black 93%, transparent 100%);
+            mask-image: linear-gradient(to right, black 93%, transparent 100%);
         }
 
         .grid-doporuceni {
@@ -304,12 +304,11 @@
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             scroll-behavior: smooth;
-            padding-bottom: 20px; /* Místo pro scrollbar */
-            -ms-overflow-style: none; /* Skryje scrollbar v IE a Edge */
-            scrollbar-width: none; /* Skryje scrollbar ve Firefoxu */
+            padding-bottom: 20px; 
+            -ms-overflow-style: none; 
+            scrollbar-width: none; 
         }
         
-        /* Skryje scrollbar v Chrome/Safari, ale ponechá funkčnost */
         .grid-doporuceni::-webkit-scrollbar {
             display: none;
         }
@@ -323,10 +322,10 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            /* Karty se budou ukazovat po dvou vedle sebe */
-            min-width: calc(50% - 10px); 
+            
+            /* Zásadní: Uzamkneme šířku přesně na necelou polovinu */
+            flex: 0 0 calc(46% - 10px); 
             scroll-snap-align: start;
-            flex-shrink: 0;
         }
 
         .doporuceni-text {
@@ -383,7 +382,6 @@
             margin-top: 2px;
         }
 
-        /* Tlačítko pro posun carouselu (viditelné spíše na desktopu) */
         .posun-btn {
             position: absolute;
             right: 10px;
@@ -478,12 +476,21 @@
                 width: 100%;
                 box-sizing: border-box;
             }
+            
+            /* Mobilní verze carouselu */
+            .doporuceni-wrapper {
+                /* Na mobilu vytrácíme až 2. vykukující kartu */
+                -webkit-mask-image: linear-gradient(to right, black 88%, transparent 100%);
+                mask-image: linear-gradient(to right, black 88%, transparent 100%);
+            }
             .karta-doporuceni {
-                min-width: 85%; /* Na mobilu ukazuje jednu kartu a kousek další */
+                /* Jedna velká karta na displeji (85%), zbytek vykukuje druhá */
+                flex: 0 0 85%;
                 padding: 20px; 
             }
             .posun-btn {
-                display: none; /* Na mobilu se posouvá swipe prstem, tlačítko překáží */
+                /* Na mobilu posouváme prstem, tlačítko překáží */
+                display: none; 
             }
         }
     </style>
@@ -562,8 +569,13 @@
                     <div class="nastroj-karta"><img src="https://www.richardherzog.cz/sklikok.png" alt="Sklik" class="nastroj-logo"><span class="nastroj-nazev">Sklik</span></div>
                     <div class="nastroj-karta"><img src="https://www.richardherzog.cz/tiktokok.png" alt="TikTok Ads" class="nastroj-logo"><span class="nastroj-nazev">TikTok Ads</span></div>
                     <div class="nastroj-karta"><img src="https://www.richardherzog.cz/msadsok.png" alt="Microsoft Ads (Bing)" class="nastroj-logo"><span class="nastroj-nazev">Microsoft Ads</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/linkedinok.png" alt="LinkedIn Ads" class="nastroj-logo"><span class="nastroj-nazev">LinkedIn Ads</span></div>
                     <div class="nastroj-karta"><img src="https://www.richardherzog.cz/mergadook.png" alt="Mergado" class="nastroj-logo"><span class="nastroj-nazev">Mergado</span></div>
                     <div class="nastroj-karta"><img src="https://www.richardherzog.cz/dotidotok.png" alt="Dotidot" class="nastroj-logo"><span class="nastroj-nazev">Dotidot</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/gmclogo.png" alt="Merchant Center" class="nastroj-logo"><span class="nastroj-nazev">Merchant Center</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/shoptetlogo.png" alt="Shoptet" class="nastroj-logo"><span class="nastroj-nazev">Shoptet</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/woo.png" alt="WooCommerce" class="nastroj-logo"><span class="nastroj-nazev">WooCommerce</span></div>
+                    <div class="nastroj-karta"><img src="https://www.richardherzog.cz/optimonk.png" alt="Optimonk" class="nastroj-logo"><span class="nastroj-nazev">Optimonk</span></div>
                 </div>
             </div>
 

@@ -294,6 +294,7 @@
         .doporuceni-wrapper {
             position: relative;
             margin-top: 20px;
+            /* Na desktopu mizí až konec 3. vykukující karty (93% - 100%) */
             -webkit-mask-image: linear-gradient(to right, black 93%, transparent 100%);
             mask-image: linear-gradient(to right, black 93%, transparent 100%);
         }
@@ -323,6 +324,7 @@
             flex-direction: column;
             justify-content: space-between;
             
+            /* Uzamkneme šířku přesně na necelou polovinu */
             flex: 0 0 calc(46% - 10px); 
             scroll-snap-align: start;
         }
@@ -476,11 +478,14 @@
                 box-sizing: border-box;
             }
             
+            /* Mobilní verze carouselu */
             .doporuceni-wrapper {
+                /* Na mobilu vytrácíme až 2. vykukující kartu */
                 -webkit-mask-image: linear-gradient(to right, black 88%, transparent 100%);
                 mask-image: linear-gradient(to right, black 88%, transparent 100%);
             }
             .karta-doporuceni {
+                /* Jedna velká karta na displeji (85%), zbytek vykukuje druhá */
                 flex: 0 0 85%;
                 padding: 20px; 
             }
@@ -497,7 +502,7 @@
             <div class="hero-text">
                 
                 <h1>Ahoj, já jsem <br><span>Richard Herzog</span></h1>
-                <p>Daty řízený marketing, který reálně posouvá byznys. Propojuji dravé PPC strategie s precizní datovou automatizací. Vytěžte ze svých kampaní maximum díky jednomu zdroji pravdy.</p>
+                <p>Dělám daty řízený marketing, který reálně posouvá byznys. Propojuji dravé PPC strategie s precizní datovou automatizací. Vytěžte ze svých kampaní <strong>MAXIMUM</strong>.</p>
                 
                 <div class="kontakt-boxy">
                     <a href="tel:+420728211111" class="kontakt-tlacitko" title="Zavolat">
@@ -553,11 +558,9 @@
         <div id="ppc-obsah" class="tab-content active">
             
             <div style="margin-bottom: 20px;">
-                <h2 style="font-size: 1.8rem; margin-bottom: 5px !important;">Kampaně, které dávají smysl</h2>
-                <p style="color: #64748b; font-size: 1.05rem; margin: 0;">Škálování výkonu napříč trhy s důrazem na PNO a ROI.</p>
+                <h2 style="font-size: 1.8rem; margin-bottom: 5px !important;">Jak bude vypadat naše spolupráce</h2>
             </div>
-
-            <h3 style="color: var(--barva-hero); font-size: 1.3rem; margin-bottom: 20px; margin-top: 30px;">Jak bude vypadat naše spolupráce</h3>
+            
             <div class="grid-o-mne">
                 <div class="karta">
                     <h3><span class="ikona" style="font-weight: bold; font-size: 1.3rem;">1</span> Úvodní audit a inventura (Kde jste teď)</h3>
@@ -569,7 +572,7 @@
                 </div>
                 <div class="karta">
                     <h3><span class="ikona" style="font-weight: bold; font-size: 1.3rem;">3</span> Návrh strategie a transparentní plán</h3>
-                    <p>Žádné černé skříňky. Přesně si řekneme, které kanály spustíme (Google, Meta, Sklik…), jaký bude rozpočet a co přesně je moje zodpovědnost vs. co potřebuji od vás (např. podklady ke kreativě nebo maržím).</p>
+                    <p>Žádné černé skříňky. Přesně si řekneme, které kanály spustíme (Google, Meta, Sklik…), jaký bude rozpočet a co přesně je moje zodpovědnost vs. co potřebuji od vás (např. podklady ke kreativě nebo produktům).</p>
                 </div>
                 <div class="karta">
                     <h3><span class="ikona" style="font-weight: bold; font-size: 1.3rem;">4</span> Pravidla vyhodnocování a reporting</h3>
@@ -584,16 +587,25 @@
             <h3 style="color: var(--barva-hero); font-size: 1.3rem; margin-bottom: 20px; margin-top: 40px;">Výsledky & Case Studies</h3>
             <div class="grid-o-mne">
                 <div class="karta">
-                    <h3><span class="ikona" style="font-size: 1.6rem;">🎯</span> Tvorba a škálování kreativních konceptů</h3>
-                    <p>V době algoritmických sociálních sítí nestačí jeden statický formát. Pro klienty aktivně navrhuji rozmanité komunikační úhly pro jeden produkt – od unboxing videí, přes recenze, až po UGC. Získali jsme tak obrovskou svobodu – <strong>základní grafické podklady si generuji sám přes AI</strong>, ladím v Canvě a novou kreativu máme nasazenou klidně za 30 minut.</p>
+                    <h3><span class="ikona">🎨</span> Od třítýdenního čekání k nové kreativě za 30 minut</h3>
+                    <p>Když nám těsně před hlavní sezónou začala agentura dodávat grafiku s třítýdenním zpožděním a ve špatné kvalitě, <strong>nemohli jsme jen nečinně přihlížet</strong>. Připravil jsem detailní zadání a naučil custom AI nástroj pracovat s brandem klienta.</p>
+                    <p><strong>Základní grafické podklady si nyní generuji sám a finálně je ladím v Canvě</strong>. Získali jsme tak obrovskou svobodu – místo frustrujícího čekání na externisty dokážeme bleskově reagovat na aktuální potřeby online prostředí a novou kreativu máme nasazenou klidně za půl hodiny.</p>
                 </div>
                 <div class="karta">
                     <h3><span class="ikona" style="font-size: 1.6rem;">📺</span> Synergie TV a Onlinu</h3>
-                    <p>Spolupracoval jsem s klienty při masivních <strong>televizních kampaních</strong>. Onlinem jsme maximalizovali dosah TV reklamy, dotazníkově měřili nárůst povědomí o značce a pomocí pokročilého remarketingu jsme efektivně vytěžovali skokově zvýšenou návštěvnost webu.</p>
+                    <p>Spolupracoval jsem s klienty při masivních <strong>televizních kampaních</strong>. Onlinem jsme maximalizovali dosah TV reklamy, <strong>dotazníkově měřili</strong> nárůst povědomí o značce a pomocí pokročilého remarketingu jsme efektivně vytěžovali skokově zvýšenou návštěvnost webu.</p>
                 </div>
                 <div class="karta">
                     <h3><span class="ikona" style="font-size: 1.6rem;">🌍</span> Globální expanze</h3>
-                    <p>Řídil jsem kampaně pro celý svět (B2B software). Získal jsem cenné lekce ze specifik různých trhů, a to od překvapivě výkonné africké Nigérie až po Mexiko, kde kampaně generovaly ohromné množství leadů. Zároveň jsem u e-commerce projektů <strong>upravoval zobrazování slev, čímž jsme znásobili konverzní poměr</strong>.</p>
+                    <p>Řídil jsem kampaně pro celý svět (B2B software). Získal jsem cenné lekce ze specifik různých trhů, a to od překvapivě výkonné africké Nigérie až po Mexiko, kde kampaně generovaly ohromné množství leadů.</p>
+                </div>
+                <div class="karta">
+                    <h3><span class="ikona">✍️</span> Synergie obsahu a kampaní</h3>
+                    <p>U segmentu krmiv pro zvířata jsem prokázal, že dobře cílené <strong>blogové články mohou tvořit velkou část obratu (až 1/3)</strong>. Kolem těchto článků jsme následně budovali celou kampaňovou strukturu.</p>
+                </div>
+                <div class="karta">
+                    <h3><span class="ikona">🎯</span> Tvorba a škálování kreativních konceptů</h3>
+                    <p>V době algoritmických sociálních sítí nestačí jeden statický formát. Pro klienty aktivně navrhuji rozmanité komunikační úhly pro každý produkt – od unboxing videí a lifestylových fotek, přes <strong>recenze spokojených zákazníků</strong>, zdůraznění benefitů, až UGC. Tento multiformátový přístup nám umožňuje efektivně <strong>zasáhnout cílovou skupinu</strong> v celé její šíři a napříč nákupním trychtýřem.</p>
                 </div>
             </div>
 
@@ -620,11 +632,9 @@
         <div id="data-obsah" class="tab-content">
             
             <div style="margin-bottom: 20px;">
-                <h2 style="font-size: 1.8rem; margin-bottom: 5px !important;">Budování „jednoho zdroje pravdy“</h2>
-                <p style="color: #64748b; font-size: 1.05rem; margin: 0;">Integrace, automatizace a reporting napříč platformami.</p>
+                <h2 style="font-size: 1.8rem; margin-bottom: 5px !important;">Jak bude vypadat naše spolupráce</h2>
             </div>
 
-            <h3 style="color: var(--barva-hero); font-size: 1.3rem; margin-bottom: 20px; margin-top: 30px;">Jak bude vypadat naše spolupráce</h3>
             <div class="grid-o-mne">
                 <div class="karta">
                     <h3><span class="ikona" style="font-weight: bold; font-size: 1.3rem;">1</span> Zmapování datových toků (Co a kde měříte)</h3>
@@ -655,6 +665,10 @@
                 <div class="karta">
                     <h3><span class="ikona" style="font-size: 1.6rem;">📊</span> Analýza trhu a hledanosti</h3>
                     <p>Předdefinuji celý trh (kategorie, konkurence, marketplaces). K tomu pak měsíčně stahujeme a ukládáme data o hledanosti vyhledávacích dotazů v Googlu. Díky tomu vidíme, <strong>zda rosteme spolu s trhem, nebo ztrácíme podíl</strong>, a máme v rukou tvrdá data pro další strategii.</p>
+                </div>
+                <div class="karta">
+                    <h3><span class="ikona" style="font-size: 1.6rem;">🤖</span> Proaktivní analytika a Skóringové modely</h3>
+                    <p>Z mých předchozích zkušeností jsem schopen napojit se přes SQL přímo na datový sklad, plně zautomatizovat reporting a definovat podmínky pro učení modelů. Díky velkým datovým přehledům se mi daří nacházet klíčové příležitosti – u jednoho klienta jsme např. odhalili hromadný přesun zákazníků na marketplaces, což vedlo k okamžitému zalistování jeho produktů.</p>
                 </div>
             </div>
 

@@ -547,6 +547,7 @@
         </div>
     </header>
 
+    <!-- PŘIDÁNO ID PRO SKROLOVÁNÍ -->
     <nav class="tabs-container" id="hlavni-navigace">
         <button class="tab-btn active" onclick="otevriZalozku('ppc-obsah', this)">PPC a Výkonnost</button>
         <button class="tab-btn" onclick="otevriZalozku('data-obsah', this)">Datová analytika</button>
@@ -632,9 +633,11 @@
         <div id="data-obsah" class="tab-content">
             
             <div style="margin-bottom: 20px;">
-                <h2 style="font-size: 1.8rem; margin-bottom: 5px !important;">Jak bude vypadat naše spolupráce</h2>
+                <h2 style="font-size: 1.8rem; margin-bottom: 5px !important;">Budování „jednoho zdroje pravdy“</h2>
+                <p style="color: #64748b; font-size: 1.05rem; margin: 0;">Integrace, automatizace a reporting napříč platformami.</p>
             </div>
 
+            <h3 style="color: var(--barva-hero); font-size: 1.3rem; margin-bottom: 20px; margin-top: 30px;">Jak bude vypadat naše spolupráce</h3>
             <div class="grid-o-mne">
                 <div class="karta">
                     <h3><span class="ikona" style="font-weight: bold; font-size: 1.3rem;">1</span> Zmapování datových toků (Co a kde měříte)</h3>
@@ -775,7 +778,7 @@
 
     <!-- Skripty -->
     <script>
-// Přepínání Pilířů a skrolování
+        // Přepínání Pilířů a skrolování
         function otevriZalozku(idZalozky, tlacitko) {
             let obsahy = document.getElementsByClassName("tab-content");
             for (let i = 0; i < obsahy.length; i++) {
@@ -787,16 +790,21 @@
                 tlacitka[i].classList.remove("active");
             }
 
+            // 1. Aktivujeme nový obsah a tlačítko
             let aktivniObsah = document.getElementById(idZalozky);
             aktivniObsah.classList.add("active");
             tlacitko.classList.add("active");
 
-            // --- OPRAVA: Plynulé odrolování na pevnou pozici navigace ---
-            let navigace = document.getElementById('hlavni-navigace');
-            
-            // offsetTop bere pevnou vzdálenost navigace od úplného vršku stránky, ignoruje přilepení
+            // 2. Najdeme sticky menu a zjistíme jeho aktuální výšku v pixelech
+            let menu = document.querySelector('.tabs-container');
+            let vyskaMenu = menu.offsetHeight;
+
+            // 3. Spočítáme absolutní pozici začátku nového obsahu vůči úplnému vršku stránky
+            let poziceObsahu = aktivniObsah.getBoundingClientRect().top + window.scrollY;
+
+            // 4. Odrolujeme na začátek obsahu minus výška menu (a minus 20px rezerva)
             window.scrollTo({
-                top: navigace.offsetTop,
+                top: poziceObsahu - vyskaMenu - 20,
                 behavior: 'smooth'
             });
         }

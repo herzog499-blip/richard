@@ -547,7 +547,7 @@
         </div>
     </header>
 
-    <nav class="tabs-container">
+    <nav class="tabs-container" id="hlavni-navigace">
         <button class="tab-btn active" onclick="otevriZalozku('ppc-obsah', this)">PPC a Výkonnost</button>
         <button class="tab-btn" onclick="otevriZalozku('data-obsah', this)">Datová analytika</button>
     </nav>
@@ -666,6 +666,10 @@
                     <h3><span class="ikona" style="font-size: 1.6rem;">📊</span> Analýza trhu a hledanosti</h3>
                     <p>Předdefinuji celý trh (kategorie, konkurence, marketplaces). K tomu pak měsíčně stahujeme a ukládáme data o hledanosti vyhledávacích dotazů v Googlu. Díky tomu vidíme, <strong>zda rosteme spolu s trhem, nebo ztrácíme podíl</strong>, a máme v rukou tvrdá data pro další strategii.</p>
                 </div>
+                <div class="karta">
+                    <h3><span class="ikona" style="font-size: 1.6rem;">🤖</span> Proaktivní analytika a Skóringové modely</h3>
+                    <p>Z mých předchozích zkušeností jsem schopen napojit se přes SQL přímo na datový sklad, plně zautomatizovat reporting a definovat podmínky pro učení modelů. Díky velkým datovým přehledům se mi daří nacházet klíčové příležitosti – u jednoho klienta jsme např. odhalili hromadný přesun zákazníků na marketplaces, což vedlo k okamžitému zalistování jeho produktů.</p>
+                </div>
             </div>
 
             <h3 style="color: var(--barva-hero); font-size: 1.3rem; margin-bottom: 20px; margin-top: 40px;">S čím nejčastěji pracuji</h3>
@@ -771,7 +775,7 @@
 
     <!-- Skripty -->
     <script>
-        // Přepínání Pilířů
+        // Přepínání Pilířů a skrolování
         function otevriZalozku(idZalozky, tlacitko) {
             let obsahy = document.getElementsByClassName("tab-content");
             for (let i = 0; i < obsahy.length; i++) {
@@ -786,6 +790,15 @@
             let aktivniObsah = document.getElementById(idZalozky);
             aktivniObsah.classList.add("active");
             tlacitko.classList.add("active");
+
+            // --- Plynulé odrolování na začátek navigace po kliknutí ---
+            let navigace = document.getElementById('hlavni-navigace');
+            let poziceNavigace = navigace.getBoundingClientRect().top + window.scrollY;
+            
+            window.scrollTo({
+                top: poziceNavigace,
+                behavior: 'smooth'
+            });
         }
 
         // Posun Carouselu doporučení

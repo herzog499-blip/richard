@@ -775,7 +775,7 @@
 
     <!-- Skripty -->
     <script>
-        // Přepínání Pilířů a skrolování
+// Přepínání Pilířů a skrolování
         function otevriZalozku(idZalozky, tlacitko) {
             let obsahy = document.getElementsByClassName("tab-content");
             for (let i = 0; i < obsahy.length; i++) {
@@ -791,12 +791,12 @@
             aktivniObsah.classList.add("active");
             tlacitko.classList.add("active");
 
-            // --- Plynulé odrolování na začátek navigace po kliknutí ---
+            // --- OPRAVA: Plynulé odrolování na pevnou pozici navigace ---
             let navigace = document.getElementById('hlavni-navigace');
-            let poziceNavigace = navigace.getBoundingClientRect().top + window.scrollY;
             
+            // offsetTop bere pevnou vzdálenost navigace od úplného vršku stránky, ignoruje přilepení
             window.scrollTo({
-                top: poziceNavigace,
+                top: navigace.offsetTop,
                 behavior: 'smooth'
             });
         }
